@@ -1,0 +1,3208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interview Study Guide</title>
+<meta name="description" content="Topic-wise interview study guide: aptitude, OOP, Java, C#/.NET, DSA, SQL, APIs, Cloud, AI, Testing, GD and HR.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --surface-2: #f1f1ee;
+  --text: #1d1d1b;
+  --muted: #5f5f5a;
+  --border: #e3e3de;
+  --accent: #4338ca;
+  --accent-soft: #eceafd;
+  --done: #15803d;
+  --mark: #fde68a;
+  --code-bg: #f4f4f1;
+  --code-text: #24292f;
+  --hl-keyword: #cf222e;
+  --hl-string: #0a3069;
+  --hl-comment: #6e7781;
+  --hl-number: #0550ae;
+  --hl-title: #8250df;
+  --hl-type: #953800;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
+  --sidebar-w: 300px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111317;
+    --surface: #181b21;
+    --surface-2: #20242c;
+    --text: #e8e8ea;
+    --muted: #a2a3ab;
+    --border: #2c3039;
+    --accent: #9aa2ff;
+    --accent-soft: #252a4a;
+    --done: #4ade80;
+    --mark: #6b5a12;
+    --code-bg: #0d0f13;
+    --code-text: #e6edf3;
+    --hl-keyword: #ff7b72;
+    --hl-string: #a5d6ff;
+    --hl-comment: #8b949e;
+    --hl-number: #79c0ff;
+    --hl-title: #d2a8ff;
+    --hl-type: #ffa657;
+    --shadow: none;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111317;
+  --surface: #181b21;
+  --surface-2: #20242c;
+  --text: #e8e8ea;
+  --muted: #a2a3ab;
+  --border: #2c3039;
+  --accent: #9aa2ff;
+  --accent-soft: #252a4a;
+  --done: #4ade80;
+  --mark: #6b5a12;
+  --code-bg: #0d0f13;
+  --code-text: #e6edf3;
+  --hl-keyword: #ff7b72;
+  --hl-string: #a5d6ff;
+  --hl-comment: #8b949e;
+  --hl-number: #79c0ff;
+  --hl-title: #d2a8ff;
+  --hl-type: #ffa657;
+  --shadow: none;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+}
+a { color: var(--accent); }
+button { font: inherit; color: inherit; }
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  position: fixed; inset: 0 auto 0 0;
+  width: var(--sidebar-w);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  z-index: 30;
+}
+.brand {
+  padding: 20px 20px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.brand a { text-decoration: none; color: var(--text); display: block; }
+.brand .name { font-weight: 700; font-size: 17px; }
+.brand .sub { font-size: 13px; color: var(--muted); }
+.progress-wrap { margin-top: 12px; }
+.progress-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.progress-track { height: 6px; background: var(--surface-2); border-radius: 99px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0; background: var(--done); border-radius: 99px; transition: width .3s; }
+
+.search { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.search input {
+  width: 100%; padding: 9px 12px;
+  font: inherit; font-size: 14px;
+  color: var(--text); background: var(--surface-2);
+  border: 1px solid var(--border); border-radius: 8px;
+  outline: none;
+}
+.search input:focus { border-color: var(--accent); }
+
+.nav { flex: 1; overflow-y: auto; padding: 8px 8px 24px; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; text-align: left;
+  padding: 8px 10px; margin: 1px 0;
+  background: none; border: 0; border-radius: 8px;
+  font-size: 14px; line-height: 1.35; color: var(--text);
+  cursor: pointer;
+}
+.nav-item:hover { background: var(--surface-2); }
+.nav-item.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.nav-num {
+  flex: 0 0 26px; height: 26px;
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 600;
+  border-radius: 50%;
+  background: var(--surface-2); color: var(--muted);
+}
+.nav-item.active .nav-num { background: var(--accent); color: var(--surface); }
+.nav-item.done .nav-num { background: var(--done); color: var(--surface); }
+.nav-title { flex: 1; }
+.result-snippet { display: block; font-size: 12px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+.result-count { font-size: 11px; color: var(--muted); }
+.nav-empty { padding: 16px; font-size: 14px; color: var(--muted); }
+
+/* ---------- Main ---------- */
+.main { margin-left: var(--sidebar-w); min-height: 100vh; }
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 24px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-title { flex: 1; font-size: 14px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.icon-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 12px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  font-size: 13px; cursor: pointer;
+}
+.icon-btn:hover { border-color: var(--accent); }
+.icon-btn[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.menu-btn { display: none; }
+.read-progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--accent); }
+
+.page { max-width: 820px; margin: 0 auto; padding: 32px 24px 80px; }
+.eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); margin: 0 0 4px; }
+.page h1 { font-size: 32px; line-height: 1.25; margin: 0 0 16px; letter-spacing: -.01em; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 24px; }
+.chip {
+  padding: 4px 10px; font-size: 13px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 99px;
+  cursor: pointer; color: var(--muted);
+}
+.chip:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- Markdown content ---------- */
+.md h2 { font-size: 24px; margin: 40px 0 12px; }
+.md h3 {
+  font-size: 20px; margin: 40px 0 12px; padding-top: 16px;
+  border-top: 1px solid var(--border);
+  scroll-margin-top: 70px;
+}
+.md h3:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+.md h4 { font-size: 17px; margin: 24px 0 8px; }
+.md p { margin: 0 0 14px; }
+.md ul, .md ol { padding-left: 26px; margin: 0 0 16px; }
+.md li { margin: 4px 0; }
+.md li > p { margin-bottom: 8px; }
+.md > ol > li {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px 6px 8px;
+  margin: 0 0 14px;
+  box-shadow: var(--shadow);
+}
+.md > ol > li::marker { color: var(--accent); font-weight: 700; }
+.md > ol { padding-left: 34px; }
+.md strong { font-weight: 650; }
+.md hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
+.md blockquote { margin: 0 0 16px; padding: 4px 16px; border-left: 3px solid var(--accent); color: var(--muted); }
+.md code {
+  font-family: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  font-size: .86em;
+  background: var(--surface-2);
+  padding: 2px 5px; border-radius: 5px;
+}
+.md pre {
+  position: relative;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  margin: 8px 0 16px;
+  line-height: 1.55;
+}
+.md pre code { background: none; padding: 0; font-size: 13.5px; color: var(--code-text); }
+.copy-btn {
+  position: absolute; top: 8px; right: 8px;
+  padding: 3px 9px; font-size: 12px;
+  background: var(--surface); color: var(--muted);
+  border: 1px solid var(--border); border-radius: 6px;
+  cursor: pointer; opacity: 0; transition: opacity .15s;
+}
+.md pre:hover .copy-btn, .copy-btn:focus { opacity: 1; }
+@media (hover: none) { .copy-btn { opacity: 1; } }
+mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1px; }
+
+/* highlight.js tokens (theme-aware) */
+.hljs-keyword, .hljs-selector-tag, .hljs-meta .hljs-keyword { color: var(--hl-keyword); }
+.hljs-string, .hljs-regexp, .hljs-meta .hljs-string { color: var(--hl-string); }
+.hljs-comment, .hljs-quote { color: var(--hl-comment); font-style: italic; }
+.hljs-number, .hljs-literal, .hljs-variable, .hljs-attr { color: var(--hl-number); }
+.hljs-title, .hljs-title.function_, .hljs-section { color: var(--hl-title); }
+.hljs-type, .hljs-built_in, .hljs-title.class_, .hljs-params { color: var(--hl-type); }
+.hljs-meta { color: var(--hl-comment); }
+
+/* ---------- Self-test mode ---------- */
+.mcq-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px 6px;
+  margin: 0 0 14px;
+  box-shadow: var(--shadow);
+}
+.reveal {
+  display: none;
+  margin: 2px 0 10px;
+  padding: 5px 14px;
+  font-size: 13px; font-weight: 600;
+  color: var(--accent); background: var(--accent-soft);
+  border: 1px solid var(--accent); border-radius: 99px;
+  cursor: pointer;
+}
+.reveal:hover { background: var(--accent); color: var(--surface); }
+body.quiz .qa .reveal { display: inline-block; }
+body.quiz .qa:not(.open) > :not(.q):not(.reveal) { display: none; }
+body.quiz .qa > .q:first-child { cursor: pointer; }
+/* in output MCQs, answer comments inside the code ( // true ) are hidden too */
+body.quiz .qa:not(.open) pre.q .hljs-comment { visibility: hidden; }
+.quiz-hint {
+  display: none;
+  background: var(--accent-soft); color: var(--accent);
+  border-radius: 10px; padding: 10px 14px; font-size: 14px; margin-bottom: 20px;
+}
+body.quiz .quiz-hint { display: block; }
+
+/* ---------- Topic footer ---------- */
+.done-row { display: flex; justify-content: center; margin: 40px 0 24px; }
+.done-btn {
+  padding: 10px 20px; font-weight: 600; font-size: 15px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px; cursor: pointer;
+}
+.done-btn:hover { border-color: var(--done); }
+.done-btn.is-done { background: var(--done); border-color: var(--done); color: var(--surface); }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pager button {
+  text-align: left; padding: 14px 16px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  cursor: pointer; box-shadow: var(--shadow);
+}
+.pager button:hover { border-color: var(--accent); }
+.pager button.next { text-align: right; grid-column: 2; }
+.pager .dir { display: block; font-size: 12px; color: var(--muted); }
+.pager .ttl { display: block; font-weight: 600; color: var(--accent); line-height: 1.35; }
+.kbd-hint { text-align: center; font-size: 12px; color: var(--muted); margin-top: 16px; }
+
+/* ---------- Home ---------- */
+.home-intro { color: var(--muted); margin-bottom: 20px; }
+.home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.primary-btn {
+  padding: 11px 20px; font-weight: 600;
+  background: var(--accent); color: var(--surface);
+  border: 0; border-radius: 10px; cursor: pointer;
+}
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.card {
+  display: flex; gap: 12px; align-items: flex-start;
+  text-align: left; padding: 14px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  cursor: pointer; box-shadow: var(--shadow);
+}
+.card:hover { border-color: var(--accent); }
+.card .nav-num { margin-top: 1px; }
+.card.done .nav-num { background: var(--done); color: var(--surface); }
+.card-title { font-weight: 600; font-size: 15px; line-height: 1.35; }
+.card-meta { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+.overlay { display: none; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-100%); transition: transform .2s; width: min(86vw, 320px); }
+  body.nav-open .sidebar { transform: none; box-shadow: 0 0 40px rgba(0,0,0,.25); }
+  body.nav-open .overlay { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 25; }
+  .main { margin-left: 0; }
+  .menu-btn { display: inline-flex; }
+  .topbar { padding: 8px 16px; }
+  .page { padding: 24px 16px 64px; }
+  .page h1 { font-size: 26px; }
+  body { font-size: 16px; }
+  .md > ol { padding-left: 28px; }
+  .md > ol > li { padding: 12px 14px 4px 6px; }
+  .pager { grid-template-columns: 1fr; }
+  .pager button.next { grid-column: 1; }
+  .icon-btn .lbl { display: none; }
+}
+@media print {
+  .sidebar, .topbar, .done-row, .pager, .kbd-hint, .chips { display: none !important; }
+  .main { margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <a href="#home"><div class="name">Interview Study Guide</div><div class="sub">Topic-wise study guide</div></a>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Progress</span><span id="progressText">0 / 0</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+  </div>
+  <div class="search"><input id="search" type="search" placeholder="Search all topics…" autocomplete="off"></div>
+  <nav class="nav" id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<div class="main">
+  <header class="topbar">
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open topics"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg> <span class="lbl">Topics</span></button>
+    <div class="topbar-title" id="topbarTitle"></div>
+    <button class="icon-btn" id="quizBtn" aria-pressed="false" title="Hide answers until you click a question"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg> <span class="lbl">Self-test</span></button>
+    <button class="icon-btn" id="themeBtn" title="Toggle light/dark theme"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg> <span class="lbl">Theme</span></button>
+    <div class="read-progress" id="readProgress"></div>
+  </header>
+  <main class="page" id="page"></main>
+</div>
+
+<script type="text/markdown" id="guide-md"># QualiZeal Intern Drive (Sep '26 batch) — Complete Interview Study Guide
+
+Built from the **Qualizeal-INF - July'26.docx** + online research on QualiZeal and on common fresher interview questions (2025–26).
+Every question has an explanation. Where code is shown, it is shown in **Java** and/or **C#**, because the INF asks for ".NET (C#, .NET Core, .NET 8+) or Java".
+
+---
+
+## Table of Contents
+
+1. [Aptitude — Quantitative (formulas + solved problems)](#1-aptitude--quantitative)
+2. [Aptitude — Logical Reasoning](#2-aptitude--logical-reasoning)
+3. [Aptitude — Verbal Ability](#3-aptitude--verbal-ability)
+4. [Technical MCQs — Output Prediction & Tricky Snippets](#4-technical-mcqs--output-prediction)
+5. [OOP — Concepts & Interview Questions](#5-oop--concepts--interview-questions)
+6. [Core Java — Interview Questions](#6-core-java--interview-questions)
+7. [C# and .NET — Interview Questions](#7-c-and-net--interview-questions)
+8. [Java vs C# — Comparison Table](#8-java-vs-c--comparison-table)
+9. [Data Structures & Algorithms — Concepts](#9-data-structures--algorithms--concepts)
+10. [Coding Round — 30 Must-Practice Programs (with solutions)](#10-coding-round--must-practice-programs)
+11. [DBMS — Interview Questions](#11-dbms--interview-questions)
+12. [SQL — Queries Asked Again and Again](#12-sql--queries-asked-again-and-again)
+13. [APIs, REST, HTTP & Web Basics](#13-apis-rest-http--web-basics)
+14. [Operating Systems & Computer Networks (Quick Round)](#14-operating-systems--computer-networks)
+15. [Cloud Computing Basics](#15-cloud-computing-basics)
+16. [AI / ML / Generative AI Basics](#16-ai--ml--generative-ai-basics)
+17. [Software Testing & Quality Engineering (QualiZeal's core business!)](#17-software-testing--quality-engineering)
+18. [SDLC, Agile, Git](#18-sdlc-agile-git)
+19. [Project & Resume Questions](#19-project--resume-questions)
+20. [Group Discussion — Topics with Talking Points](#20-group-discussion)
+21. [HR Interview — Questions with Sample Answers](#21-hr-interview)
+22. [Last-Night Revision Cheat Sheet](#22-last-night-revision-cheat-sheet)
+23. [Sources & Practice Links](#23-sources--practice-links)
+
+---
+
+## 1. Aptitude — Quantitative
+
+### 1.1 Must-memorise fraction ↔ percentage table
+
+- 1/2 = 50%, 1/7 = 14.28%, 1/12 = 8.33%
+- 1/3 = 33.33%, 1/8 = 12.5%, 1/15 = 6.67%
+- 1/4 = 25%, 1/9 = 11.11%, 1/16 = 6.25%
+- 1/5 = 20%, 1/10 = 10%, 1/20 = 5%
+- 1/6 = 16.67%, 1/11 = 9.09%, 1/25 = 4%
+
+### 1.2 Percentages
+
+**Key formulas**
+- If A is **x% more** than B, then B is **x/(100+x) × 100 %** less than A.
+- If price rises by r%, to keep expenditure the same, consumption must fall by **r/(100+r) × 100 %**.
+- Successive change of a% and b% → net = **a + b + ab/100** (use negative sign for decrease).
+
+**Solved examples**
+1. *A's salary is 25% more than B's. By what % is B's salary less than A's?*
+   → 25/125 × 100 = **20%**. (Reason: base changes. If B = 100, A = 125; difference 25 out of 125.)
+2. *Price of sugar rises 25%. By how much must a family reduce consumption to keep spending the same?*
+   → 25/125 × 100 = **20%**.
+3. *A number is increased by 20% and then decreased by 20%. Net change?*
+   → 20 − 20 + (20 × −20)/100 = **−4%** (a 4% decrease).
+4. *In an election, A gets 60% of the votes and wins by 400 votes. Total votes?*
+   → Difference = 60% − 40% = 20% = 400 → total = **2000**.
+
+### 1.3 Profit & Loss / Discount
+
+**Formulas:** Profit% = (SP − CP)/CP × 100 (always on **CP**). Discount% is always on **Marked Price (MP)**.
+Successive discounts a% and b% → single discount = **a + b − ab/100**.
+
+1. *CP = ₹400, SP = ₹500. Profit %?* → 100/400 × 100 = **25%**.
+2. *Successive discounts of 20% and 10% equal a single discount of?* → 20 + 10 − 200/100 = **28%**.
+3. *A shopkeeper marks goods 40% above CP and gives 10% discount. Profit %?*
+   → CP = 100, MP = 140, SP = 140 × 0.9 = 126 → **26% profit**.
+4. *By selling an article for ₹720, a man loses 10%. At what price should he sell to gain 10%?*
+   → CP = 720/0.9 = 800 → SP = 800 × 1.1 = **₹880**.
+5. *A dishonest dealer uses a 900 g weight for 1 kg and sells at CP. Gain %?*
+   → Gain = 100/900 × 100 = **11.11%**.
+
+### 1.4 Ratio, Proportion & Partnership
+
+1. *A:B = 2:3 and B:C = 4:5. Find A:B:C.*
+   → Make B common (LCM of 3 and 4 = 12): A:B = 8:12, B:C = 12:15 → **8:12:15**.
+2. *Divide ₹1,200 between A and B in ratio 1:3.* → A = 300, **B = 900**.
+3. *A invests ₹5,000 for 12 months, B invests ₹6,000 for 10 months. Profit ₹2,200. B's share?*
+   → Ratio = 5000×12 : 6000×10 = 60000 : 60000 = 1:1 → **₹1,100** each.
+
+### 1.5 Averages
+
+- Average = Sum / Count. If every value increases by k, average increases by k.
+1. *Average of 5 numbers is 20. One number is removed and the average becomes 18. Removed number?*
+   → 5×20 − 4×18 = 100 − 72 = **28**.
+2. *Average age of 30 students is 15. With the teacher, it becomes 16. Teacher's age?*
+   → 31×16 − 30×15 = 496 − 450 = **46**.
+3. *A car goes A→B at 40 km/h and returns at 60 km/h. Average speed?*
+   → For equal distances: 2xy/(x+y) = 2×40×60/100 = **48 km/h** (NOT 50).
+
+### 1.6 Ages
+
+1. *Father is 3 times as old as son. After 15 years he will be twice as old. Ages now?*
+   → F = 3S; 3S + 15 = 2(S + 15) → S = **15**, F = **45**.
+2. *Sum of ages of A and B is 50. Five years ago, ratio was 3:5. Present age of A?*
+   → (A−5):(B−5) = 3:5 and (A−5)+(B−5) = 40 → A−5 = 15 → **A = 20**.
+
+### 1.7 Time & Work / Pipes & Cisterns
+
+**Concept:** If someone finishes in n days, they do **1/n** of the work per day. Add rates when working together. (LCM method is faster: take total work = LCM of the days.)
+
+1. *A does a job in 10 days, B in 15 days. Together?*
+   → LCM = 30 units. A = 3/day, B = 2/day → 30/5 = **6 days**.
+2. *A and B together finish in 12 days, A alone in 20 days. B alone?*
+   → 1/12 − 1/20 = (5−3)/60 = 1/30 → **30 days**.
+3. *A is twice as efficient as B. Together they finish in 14 days. A alone?*
+   → Rates 2:1; total = 3 × 14 = 42 units; A = 42/2 = **21 days**.
+4. *Pipe A fills a tank in 20 min, pipe B empties it in 30 min. Both open — time to fill?*
+   → 1/20 − 1/30 = 1/60 → **60 min**.
+5. *12 men can do work in 18 days. How many days for 8 men?* → M₁D₁ = M₂D₂ → 12×18 = 8×D → **27 days**.
+
+### 1.8 Time, Speed, Distance (incl. Trains & Boats)
+
+**Formulas:** km/h → m/s multiply by **5/18**; m/s → km/h multiply by **18/5**.
+- Train crossing a pole/man: distance = **train length**.
+- Train crossing a platform/bridge: distance = **train length + platform length**.
+- Two trains opposite directions: relative speed = **sum**; same direction: **difference**.
+- Boats: downstream = b + s, upstream = b − s → **b = (D+U)/2, s = (D−U)/2**.
+
+1. *A 150 m train at 54 km/h crosses a pole in?* → 54 × 5/18 = 15 m/s → 150/15 = **10 s**.
+2. *Same train crosses a 300 m platform in?* → 450/15 = **30 s**.
+3. *Two trains 100 m and 150 m long at 40 and 50 km/h run in opposite directions. Time to cross each other?*
+   → relative = 90 km/h = 25 m/s; distance = 250 → **10 s**.
+4. *Boat goes 15 km/h downstream and 9 km/h upstream. Speed in still water & stream?* → **12 km/h** and **3 km/h**.
+5. *Walking at 3/4 of usual speed, a man is 20 minutes late. Usual time?*
+   → Time becomes 4/3 of usual → extra 1/3 = 20 min → usual = **60 min**.
+
+### 1.9 Simple & Compound Interest
+
+- **SI = P × R × T / 100**
+- **CI: A = P(1 + R/100)ⁿ**, CI = A − P
+- Difference between CI and SI for 2 years = **P(R/100)²**
+
+1. *SI on ₹5,000 at 8% for 3 years?* → 5000×8×3/100 = **₹1,200**.
+2. *CI on ₹10,000 at 10% for 2 years?* → 10000 × 1.21 = 12100 → **₹2,100**.
+3. *Difference between CI and SI on ₹5,000 at 10% for 2 years?* → 5000 × (0.1)² = **₹50**.
+4. *A sum doubles in 8 years at SI. Rate?* → Interest = P in 8 years → R = 100/8 = **12.5%**.
+
+### 1.10 Number System, HCF/LCM
+
+- **HCF × LCM = product of two numbers.**
+- Divisibility: 3 → digit sum divisible by 3; 4 → last two digits; 8 → last three digits; 9 → digit sum by 9; 11 → (sum of odd-place digits − sum of even-place digits) is 0 or divisible by 11.
+- Unit digit cycles: 2 → (2,4,8,6), 3 → (3,9,7,1), 7 → (7,9,3,1), 8 → (8,4,2,6); 0,1,5,6 always stay the same.
+
+1. *HCF of two numbers is 12, LCM is 360, one number is 60. Other?* → 12×360/60 = **72**.
+2. *Unit digit of 7^95?* → 95 mod 4 = 3 → 3rd in cycle (7,9,3,1) → **3**.
+3. *Smallest number which leaves remainder 2 when divided by 3, 4, 5, 6?* → LCM(3,4,5,6) = 60 → **62**.
+4. *How many numbers between 1 and 100 are divisible by 3 or 5?* → 33 + 20 − 6 = **47**.
+
+### 1.11 Permutations, Combinations & Probability
+
+- nPr = n!/(n−r)! (order matters), nCr = n!/(r!(n−r)!) (order doesn't matter).
+- Arrangements of a word with repeated letters = n! / (p! q! …).
+- Circular arrangement of n people = (n−1)!.
+
+1. *Ways to arrange the letters of LEVEL?* → 5!/(2!·2!) = **30**.
+2. *Ways to choose 3 people from 7?* → 7C3 = **35**.
+3. *Ways 5 people can sit around a round table?* → 4! = **24**.
+4. *Probability of sum 7 with two dice?* → (1,6)(2,5)(3,4)(4,3)(5,2)(6,1) = 6/36 = **1/6**.
+5. *Probability of at least one head in 3 coin tosses?* → 1 − 1/8 = **7/8**.
+6. *A bag has 4 red and 6 blue balls. Two drawn at random. P(both red)?* → 4C2/10C2 = 6/45 = **2/15**.
+
+### 1.12 Clocks & Calendars
+
+- **Clock angle = |30H − 5.5M|** (if > 180, subtract from 360).
+- Hands overlap 11 times in 12 hours (22 in a day); they are at right angles 22 times in 12 hours (44 in a day).
+- **Odd days:** normal year = 1, leap year = 2. Leap year: divisible by 4, but centuries must be divisible by 400 (1900 is not a leap year; 2000 is).
+
+1. *Angle at 3:40?* → |90 − 220| = **130°**.
+2. *If 1 Jan 2025 was a Wednesday, what day is 1 Jan 2026?* → 2025 is not leap → +1 → **Thursday**.
+
+### 1.13 Data Interpretation (approach)
+- Read the **units** and the question before calculating.
+- Approximate: if options are far apart, round numbers (e.g., 487 ≈ 500).
+- Percentage growth = (New − Old)/Old × 100.
+
+---
+
+## 2. Aptitude — Logical Reasoning
+
+### 2.1 Number & Letter Series
+
+- **2, 6, 12, 20, 30, ?** → **42** *(logic: n(n+1))*
+- **3, 5, 9, 17, 33, ?** → **65** *(logic: ×2 − 1)*
+- **1, 4, 9, 16, 25, ?** → **36** *(logic: squares)*
+- **2, 3, 5, 7, 11, 13, ?** → **17** *(logic: primes)*
+- **1, 1, 2, 3, 5, 8, ?** → **13** *(logic: Fibonacci)*
+- **4, 6, 9, 13.5, ?** → **20.25** *(logic: ×1.5)*
+- **7, 10, 8, 11, 9, 12, ?** → **10** *(logic: +3, −2)*
+- **A, C, F, J, O, ?** → **U** *(logic: +2, +3, +4, +5, +6)*
+- **AZ, BY, CX, ?** → **DW** *(logic: pairs from both ends)*
+
+**Tip:** Check differences first, then ratios, then squares/cubes, then alternate-term patterns.
+
+### 2.2 Coding–Decoding
+1. *CAT = DBU. DOG = ?* → each letter +1 → **EPH**.
+2. *If APPLE = 50 (sum of positions A=1…Z=26), what is MANGO?*
+   → APPLE = 1+16+16+12+5 = 50 ✓; MANGO = 13+1+14+7+15 = **50**.
+3. *In a code, COMPUTER = RFUVQNPC. How is MEDICINE written?*
+   → Reverse COMPUTER = R E T U P M O C. Compare with R F U V Q N P C: the first and last letters stay, every inner letter is shifted **+1**.
+   → Reverse MEDICINE = E N I C I D E M → shift inner letters +1 → **EOJDJEFM**.
+
+### 2.3 Blood Relations
+1. *Pointing to a man, a woman says: "His mother is the only daughter of my mother."* → "Only daughter of my mother" = the woman herself → she is his **mother**.
+2. *A is B's brother. C is A's father. D is C's mother. How is B related to D?* → B is D's **grandchild** (gender of B unknown — say "grandson or granddaughter").
+**Tip:** Always draw a family tree: + for male, − for female, horizontal line = siblings, vertical = generation.
+
+### 2.4 Direction Sense
+1. *A walks 5 km north, turns right and walks 3 km, turns right and walks 5 km. How far from start and in which direction?* → **3 km East**.
+2. *Shortest distance after going 3 km east and 4 km north?* → √(9+16) = **5 km** north-east.
+**Tip:** Right turn from North → East; left turn from North → West. Shadow questions: in the morning the sun is in the east, so shadows fall west.
+
+### 2.5 Seating Arrangement
+- **Linear:** draw blanks, fix the person with the most definite clue first.
+- **Circular facing centre:** your right = anticlockwise; **facing outward:** reversed.
+- Example: *A, B, C, D, E sit in a row. C is in the middle. A is to the immediate left of C. E is at the right end. B is not at an end. Who is at the left end?*
+  → positions 1–5: C = 3, A = 2, E = 5, B must be 4 (not an end) → **D at position 1**.
+
+### 2.6 Syllogisms (Venn-diagram method)
+- *All cats are dogs. All dogs are animals.* → Conclusion "All cats are animals" follows; "All animals are cats" does not.
+- *Some pens are books. All books are bags.* → "Some pens are bags" follows; "All bags are pens" does not.
+- **Rule:** Two "some" statements never give a definite conclusion. If neither "Some A are B" nor "No A is B" is certain, the answer is often **"either I or II follows"** (complementary pair).
+
+### 2.7 Statement & Assumption / Puzzles / Odd One Out
+- Odd one out: *2, 3, 5, 9, 11* → **9** (not prime). *Apple, Mango, Potato, Banana* → **Potato** (vegetable).
+- Analogy: *Doctor : Hospital :: Teacher : ?* → **School**.
+
+---
+
+## 3. Aptitude — Verbal Ability
+
+**What's usually tested:** synonyms/antonyms, fill in the blanks (prepositions/articles/tenses), error spotting, sentence correction, para-jumbles, reading comprehension.
+
+### Common grammar traps (with fixes)
+- *Wrong:* One of my friend **are** coming. → *Correct:* One of my **friends is** coming.
+   - *Rule:* "One of" + plural noun + singular verb
+- *Wrong:* Each of the students **have** a book. → *Correct:* Each of the students **has** a book.
+   - *Rule:* Each/every → singular
+- *Wrong:* He is senior **than** me. → *Correct:* He is senior **to** me.
+   - *Rule:* senior/junior/prefer → **to**
+- *Wrong:* I am working here **since** 2020. → *Correct:* I **have been** working here since 2020.
+   - *Rule:* Present perfect continuous with since/for
+- *Wrong:* He **did not went** home. → *Correct:* He **did not go** home.
+   - *Rule:* After did → base verb
+- *Wrong:* Neither he nor his friends **is** here. → *Correct:* Neither he nor his friends **are** here.
+   - *Rule:* Verb agrees with the nearer subject
+- *Wrong:* **Discuss about** the issue. → *Correct:* **Discuss** the issue.
+   - *Rule:* discuss takes no "about"
+- *Wrong:* He gave me an **advice**. → *Correct:* He gave me **(some) advice**.
+   - *Rule:* advice/information/equipment are uncountable
+
+### Reading comprehension strategy
+1. Read the **questions first**, then the passage.
+2. Answer only from the passage, not from your own knowledge.
+3. For "main idea" questions, pick the option that covers the *whole* passage, not one paragraph.
+
+### Para-jumble strategy
+Find the **opening sentence** (introduces the topic, no pronouns like "it/this/he" at the start), then find **pairs** linked by pronouns, connectors ("however", "therefore") and time order.
+
+---
+
+## 4. Technical MCQs — Output Prediction
+
+These "what is the output?" questions appear in almost every fresher online test. Each answer is explained step by step.
+
+### Java
+
+**Q1.**
+```java
+int i = 5;
+i = i++ + ++i;
+System.out.println(i);
+```
+**Output: 12.** `i++` gives 5 (then i becomes 6); `++i` makes i 7 and gives 7 → 5 + 7 = 12, which is then assigned to i.
+
+**Q2.**
+```java
+System.out.println(1 + 2 + "3" + 4 + 5);
+```
+**Output: 3345.** Evaluated left to right: 1+2 = 3 (int), 3 + "3" = "33" (String), then "33"+4 = "334", "334"+5 = "3345". Once a String appears, `+` means concatenation.
+
+**Q3.**
+```java
+String a = "hi";
+String b = "hi";
+String c = new String("hi");
+System.out.println(a == b);       // true
+System.out.println(a == c);       // false
+System.out.println(a.equals(c));  // true
+```
+`==` compares **references**. Literals go to the **String Constant Pool**, so `a` and `b` point to the same object. `new` always creates a new heap object. `equals()` compares **content**.
+
+**Q4.**
+```java
+Integer x = 127, y = 127;
+Integer p = 128, q = 128;
+System.out.println(x == y);  // true
+System.out.println(p == q);  // false
+```
+Java caches `Integer` objects from **−128 to 127**. Outside that range autoboxing creates new objects, so `==` is false. Always use `.equals()` for wrapper objects.
+
+**Q5.**
+```java
+char c = 'A';
+System.out.println(c + 1);         // 66
+System.out.println((char)(c + 1)); // B
+```
+`char + int` is promoted to `int` (ASCII of 'A' is 65).
+
+**Q6.**
+```java
+System.out.println(10 / 3);    // 3
+System.out.println(10 % 3);    // 1
+System.out.println(-7 / 2);    // -3
+System.out.println(-7 % 2);    // -1
+System.out.println(10 / 3.0);  // 3.3333333333333335
+System.out.println(0.1 + 0.2 == 0.3); // false
+```
+Integer division truncates toward zero; the sign of `%` follows the dividend. Floating-point numbers can't represent 0.1 exactly, so never compare doubles with `==`.
+
+**Q7.**
+```java
+static int test() {
+    try { return 1; }
+    finally { return 2; }
+}
+// System.out.println(test());
+```
+**Output: 2.** `finally` always runs, and a `return` inside `finally` overrides the earlier one. (Bad practice — but a favourite MCQ.)
+
+**Q8.**
+```java
+class A { void show() { System.out.println("A"); } }
+class B extends A { void show() { System.out.println("B"); } }
+A obj = new B();
+obj.show();
+```
+**Output: B.** Runtime polymorphism — the method that runs depends on the **object type** (B), not the reference type (A).
+
+**Q9.**
+```java
+class A { static void show() { System.out.println("A"); } }
+class B extends A { static void show() { System.out.println("B"); } }
+A obj = new B();
+obj.show();
+```
+**Output: A.** Static methods are **hidden, not overridden**; they're resolved by reference type at compile time.
+
+**Q10.**
+```java
+for (int i = 0; i < 5; i++);
+{
+    System.out.println("Hi");
+}
+```
+**Output: Hi (once).** The `;` after the `for` makes the loop body empty; the block runs once afterwards. (Note: `i` is not in scope inside the block.)
+
+**Q11.**
+```java
+int[] arr = new int[3];
+System.out.println(arr[1]);   // 0
+String[] s = new String[2];
+System.out.println(s[0]);     // null
+```
+Arrays get default values: 0 for numbers, false for boolean, null for objects.
+
+**Q12.**
+```java
+String s = "Java";
+s.concat(" Rocks");
+System.out.println(s);  // Java
+```
+Strings are **immutable**; `concat` returns a new string that was ignored. Use `s = s.concat(" Rocks");`.
+
+**Q13.**
+```java
+int x = 10;
+if (x = 20) { }   // compile error in Java
+```
+Java needs a `boolean` in `if`; `x = 20` is an `int`. (In C/C++ this would compile and be "true".)
+
+**Q14.**
+```java
+byte b = 127;
+b++;
+System.out.println(b);  // -128
+```
+Overflow wraps around: byte range is −128 to 127.
+
+### C#
+
+**Q15.**
+```csharp
+string a = "hi";
+string b = new string(new[] {'h','i'});
+Console.WriteLine(a == b);              // True
+Console.WriteLine((object)a == (object)b); // False
+```
+In **C#, `==` on strings compares values** (operator is overloaded) — unlike Java. Casting to `object` compares references.
+
+**Q16.**
+```csharp
+int? x = null;
+int y = x ?? 5;
+Console.WriteLine(y);  // 5
+```
+`??` is the null-coalescing operator: use the left value if not null, otherwise the right.
+
+**Q17.**
+```csharp
+struct P { public int X; }
+P p1 = new P { X = 1 };
+P p2 = p1;
+p2.X = 99;
+Console.WriteLine(p1.X);  // 1
+```
+`struct` is a **value type** → assignment copies the value. If `P` were a `class`, it would print 99.
+
+**Q18.**
+```csharp
+var list = new List<int> { 1, 2, 3, 4, 5 };
+var q = list.Where(n => n > 2);
+list.Add(6);
+Console.WriteLine(q.Count());  // 4
+```
+LINQ uses **deferred execution** — the query runs when it is enumerated (`Count()`), after 6 was added → {3,4,5,6}.
+
+**Q19.**
+```csharp
+Console.WriteLine(5 / 2);     // 2
+Console.WriteLine(5 / 2.0);   // 2.5
+Console.WriteLine(5 % -3);    // 2
+```
+
+### SQL MCQ quickies
+- `SELECT COUNT(*)` counts all rows; `COUNT(column)` **ignores NULLs**.
+- `NULL = NULL` is not TRUE (it's UNKNOWN) → use `IS NULL`.
+- `WHERE` filters rows **before** grouping, `HAVING` filters groups **after**.
+- `DELETE` can be rolled back (it's DML); `TRUNCATE` removes all rows quickly (DDL; can't use WHERE); `DROP` removes the table itself.
+
+---
+
+## 5. OOP — Concepts & Interview Questions
+
+OOP is the #1 topic in the technical interview for this role (the INF names it explicitly). Know every question below with an example.
+
+1. **What is OOP? Why do we use it?**
+   Object-Oriented Programming organises software around **objects** — things that bundle **data (fields)** and **behaviour (methods)**. Benefits: **reusability** (inheritance), **maintainability** (encapsulation keeps changes local), **flexibility** (polymorphism), and it **models the real world** (Customer, Order, Account).
+
+2. **Class vs Object?**
+   A **class** is a blueprint/template; an **object** is an instance created from it, with its own memory.
+   *Example:* `Car` is a class; `myCar = new Car("Red")` is an object. A class takes no memory for its fields until objects are created.
+
+3. **Four pillars of OOP?** — Encapsulation, Abstraction, Inheritance, Polymorphism.
+
+4. **Encapsulation — explain with code.**
+   Binding data and methods together and **restricting direct access** to the data (private fields + public getters/setters or methods with validation).
+   ```java
+   public class BankAccount {
+       private double balance;            // hidden
+
+       public void deposit(double amt) {
+           if (amt <= 0) throw new IllegalArgumentException("Invalid amount");
+           balance += amt;
+       }
+       public double getBalance() { return balance; }
+   }
+   ```
+   Why: nobody can set `balance = -5000` directly; all changes go through validated methods.
+
+5. **Abstraction — and how is it different from encapsulation?**
+   Abstraction = **showing only what is essential and hiding how it's done** (e.g., you call `list.sort()` without knowing the algorithm). Achieved via **abstract classes and interfaces**.
+   - **Abstraction:**
+      - Hides **complexity** (design level)
+      - "What it does"
+      - Interfaces, abstract classes
+   - **Encapsulation:**
+      - Hides **data** (implementation level)
+      - "How data is protected"
+      - Access modifiers (private, public…)
+
+   Real-life: a car's steering wheel and pedals are the abstraction; the engine being sealed under the bonnet is encapsulation.
+
+6. **Inheritance — types?**
+   A child class acquires properties and behaviour of a parent (`extends` in Java, `:` in C#) — "**IS-A**" relationship. Types: single, multilevel, hierarchical, multiple (through **interfaces only** in Java/C#), hybrid.
+
+7. **Why doesn't Java/C# support multiple inheritance of classes?**
+   The **Diamond Problem**: if B and C both extend A and override `show()`, and D extends both B and C, which `show()` should D get? It's ambiguous. Java and C# avoid it by allowing a class to extend only one class, but implement many interfaces.
+
+8. **Polymorphism — types?**
+   "One name, many forms."
+   - **Compile-time (static)** — **method overloading**: same name, different parameter list (number/type/order) in the same class. Return type alone is NOT enough.
+   - **Runtime (dynamic)** — **method overriding**: child redefines a parent method with the same signature; the call is decided at runtime based on object type (dynamic method dispatch).
+   ```java
+   class Shape { double area() { return 0; } }
+   class Circle extends Shape {
+       double r; Circle(double r) { this.r = r; }
+       @Override double area() { return Math.PI * r * r; }
+   }
+   class Square extends Shape {
+       double s; Square(double s) { this.s = s; }
+       @Override double area() { return s * s; }
+   }
+   Shape[] shapes = { new Circle(1), new Square(2) };
+   for (Shape sh : shapes) System.out.println(sh.area()); // each calls its own version
+   ```
+
+9. **Overloading vs Overriding**
+   - **Overloading:**
+      - Same class (or inherited)
+      - Different parameters
+      - Compile-time
+      - Return type can differ
+      - Static methods can be overloaded
+   - **Overriding:**
+      - Parent–child classes
+      - Same signature
+      - Runtime
+      - Return type same (or covariant)
+      - Static methods can't be overridden (they're hidden)
+
+10. **Abstract class vs Interface**
+    - **Abstract class:**
+       - Can have constructors, fields with state, concrete + abstract methods
+       - A class extends only **one**
+       - Use when classes share **common code** ("is-a" with shared base)
+       - Any access modifiers
+    - **Interface:**
+       - Contract; no instance fields/state; (Java 8+/C# 8+ allow default methods)
+       - A class can implement **many**
+       - Use for **capability** ("can-do": `Comparable`, `IDisposable`)
+       - Members are public by default
+
+11. **What is a constructor? Types?**
+    A special method with the class name and no return type, called automatically when an object is created, to initialise it. Types: **default (no-arg)**, **parameterised**, **copy constructor** (C++ style; in Java you write it manually), **static constructor** (C# — runs once per type). If you write no constructor, the compiler adds a default one.
+
+12. **Can a constructor be private? Why?**
+    Yes — to stop outside code creating objects. Used in the **Singleton pattern** and utility classes.
+    ```java
+    public class Config {
+        private static Config instance;
+        private Config() {}
+        public static synchronized Config getInstance() {
+            if (instance == null) instance = new Config();
+            return instance;
+        }
+    }
+    ```
+
+13. **`this` vs `super` (Java) / `this` vs `base` (C#)?**
+    `this` refers to the current object (and can call another constructor of the same class). `super`/`base` refers to the parent (call parent constructor or parent method).
+
+14. **Access modifiers?**
+    - Java: `private` (class only) < default/package-private (same package) < `protected` (package + subclasses) < `public` (everywhere).
+    - C#: `private`, `protected`, `internal` (same assembly), `protected internal`, `private protected`, `public`. Class members default to `private`.
+
+15. **Static keyword?**
+    Belongs to the **class**, not the object — one shared copy. A static method can't use `this` or instance members directly. Example: `Math.max()`, a counter of objects created.
+
+16. **`final` (Java) / `sealed`, `readonly`, `const` (C#)?**
+    - Java `final` variable = can't reassign; `final` method = can't override; `final` class = can't inherit (e.g., `String`).
+    - C#: `const` = compile-time constant; `readonly` = set only in declaration/constructor; `sealed` class = can't inherit; `sealed override` = stop further overriding.
+
+17. **Association, Aggregation, Composition?**
+    - **Association:** a general "uses-a" link (Teacher ↔ Student).
+    - **Aggregation:** "has-a", weak — parts can exist independently (Department has Teachers; teachers exist if the department closes).
+    - **Composition:** "has-a", strong — parts die with the whole (House has Rooms).
+    Interview tip: "Prefer **composition over inheritance**" — it's more flexible and avoids fragile class hierarchies.
+
+18. **Coupling & Cohesion?** Aim for **low coupling** (classes depend little on each other) and **high cohesion** (a class does one focused job).
+
+19. **SOLID principles (frequently asked to freshers who mention "design" on their resume)**
+    - **S – Single Responsibility:** one class, one reason to change (e.g., `InvoicePrinter` separate from `InvoiceCalculator`).
+    - **O – Open/Closed:** open for extension, closed for modification (add a new `Shape` subclass instead of editing a giant `if-else`).
+    - **L – Liskov Substitution:** a subclass must be usable wherever the parent is expected without breaking behaviour (the classic Square-extends-Rectangle violation).
+    - **I – Interface Segregation:** many small interfaces > one fat interface.
+    - **D – Dependency Inversion:** depend on abstractions (interfaces), not concrete classes — the basis of **Dependency Injection** in ASP.NET Core and Spring.
+
+20. **What is a design pattern? Name a few.**
+    A reusable solution to a common design problem. **Creational:** Singleton, Factory, Builder. **Structural:** Adapter, Decorator. **Behavioural:** Observer, Strategy. (Also know: **MVC** – Model-View-Controller; **Repository** pattern in .NET.)
+
+21. **Object class (Java) / System.Object (C#)?** Root of all classes. Important methods: `equals/Equals`, `hashCode/GetHashCode`, `toString/ToString`. **Rule:** if you override `equals`, also override `hashCode`, otherwise HashMap/HashSet break.
+
+22. **Shallow copy vs Deep copy?** Shallow copy copies the field values (references point to the same nested objects); deep copy also clones the nested objects.
+
+23. **Real-world OOP example question: "Design classes for a Library / Parking Lot / ATM."**
+    Approach: identify **nouns → classes** (Book, Member, Librarian, Loan), **verbs → methods** (issueBook, returnBook, calculateFine), relationships (Member *has* Loans), and where inheritance helps (Member → StudentMember, FacultyMember with different borrowing limits → polymorphic `getMaxBooks()`).
+
+---
+
+## 6. Core Java — Interview Questions
+
+### 6.1 Basics
+
+1. **Features of Java?** Platform-independent ("write once, run anywhere" via bytecode + JVM), object-oriented, robust (strong typing, exception handling, garbage collection), secure (no explicit pointers, bytecode verifier), multithreaded, high performance (JIT compiler).
+
+2. **JDK vs JRE vs JVM?**
+   - **JVM** – runs bytecode (`.class`), converts it to machine code (interpreter + JIT). Platform-*dependent*.
+   - **JRE** – JVM + core libraries → needed to **run** Java programs.
+   - **JDK** – JRE + development tools (`javac`, debugger, `jar`) → needed to **develop**.
+   Flow: `Hello.java` → `javac` → `Hello.class` (bytecode) → JVM → machine code.
+
+3. **Why is Java platform-independent but JVM is not?** Bytecode is the same on every OS; each OS has its own JVM that translates bytecode to that OS's machine code.
+
+4. **Explain `public static void main(String[] args)`.**
+   `public` – JVM must access it from outside; `static` – called without creating an object; `void` – returns nothing; `main` – entry point name the JVM looks for; `String[] args` – command-line arguments.
+
+5. **Primitive types?** byte (1 B), short (2), int (4), long (8), float (4), double (8), char (2, Unicode), boolean. Everything else is a reference type. **Wrapper classes** (Integer, Double…) let primitives be used as objects (in collections); conversion is **autoboxing/unboxing**.
+
+6. **Is Java pass-by-value or pass-by-reference?** **Always pass-by-value.** For objects, the *value of the reference* is copied — so you can change the object's fields inside a method, but reassigning the parameter doesn't affect the caller.
+
+7. **Stack vs Heap memory?** Stack: method calls, local variables, references — per thread, fast, auto-freed when a method returns. Heap: all objects — shared, managed by the **Garbage Collector**. `StackOverflowError` (deep recursion) vs `OutOfMemoryError` (heap full).
+
+### 6.2 Strings
+
+8. **Why is String immutable?**
+   1) **String pool** — many references share one literal safely. 2) **Security** — file paths, URLs, DB credentials can't be changed after validation. 3) **Thread-safe** automatically. 4) **hashCode caching** — great as HashMap keys.
+
+9. **String vs StringBuilder vs StringBuffer**
+   - **String:**
+      - *Mutable:* No
+      - *Thread-safe:* Yes (immutable)
+      - *Speed:* Slow for many edits
+   - **StringBuilder:**
+      - *Mutable:* Yes
+      - *Thread-safe:* **No**
+      - *Speed:* **Fastest**
+   - **StringBuffer:**
+      - *Mutable:* Yes
+      - *Thread-safe:* Yes (synchronized)
+      - *Speed:* Slower than Builder
+
+   Use StringBuilder for building strings in loops.
+
+10. **`==` vs `equals()`?** `==` compares references (for objects) / values (for primitives); `equals()` compares content (if the class overrides it, like String).
+
+### 6.3 Exception Handling
+
+11. **Exception hierarchy?** `Throwable` → `Error` (OutOfMemoryError, StackOverflowError — don't catch) and `Exception` → checked exceptions (IOException, SQLException) and `RuntimeException` (unchecked: NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException, NumberFormatException).
+
+12. **Checked vs unchecked?** Checked → compiler forces you to handle (`try-catch`) or declare (`throws`); usually external problems. Unchecked → programming bugs; compiler doesn't force handling.
+
+13. **`throw` vs `throws`?** `throw` actually throws an exception object inside a method (`throw new IllegalArgumentException()`); `throws` in the method signature declares what it may throw.
+
+14. **`final` vs `finally` vs `finalize`?** `final` – keyword (constant/no override/no inheritance). `finally` – block that always runs after try/catch (cleanup). `finalize()` – old GC hook, **deprecated** — don't use.
+
+15. **Does `finally` always run?** Yes, except when `System.exit()` is called or the JVM crashes.
+
+16. **try-with-resources?** Java 7+: resources that implement `AutoCloseable` are closed automatically.
+    ```java
+    try (BufferedReader br = new BufferedReader(new FileReader("a.txt"))) {
+        System.out.println(br.readLine());
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    ```
+
+17. **How to create a custom exception?**
+    ```java
+    class InsufficientBalanceException extends Exception {
+        public InsufficientBalanceException(String msg) { super(msg); }
+    }
+    ```
+
+### 6.4 Collections Framework
+
+18. **Hierarchy?** `Collection` → `List` (ArrayList, LinkedList, Vector), `Set` (HashSet, LinkedHashSet, TreeSet), `Queue` (PriorityQueue, ArrayDeque). `Map` is separate: HashMap, LinkedHashMap, TreeMap, Hashtable.
+
+19. **ArrayList vs LinkedList?**
+    - **ArrayList:**
+       - Dynamic array
+       - `get(i)` O(1)
+       - Insert/delete in middle O(n) (shifting)
+       - Less memory
+    - **LinkedList:**
+       - Doubly linked list
+       - `get(i)` O(n)
+       - O(1) once you're at the node
+       - More memory (prev/next pointers)
+
+    Use ArrayList by default (most code reads more than it inserts).
+
+20. **List vs Set vs Map?** List – ordered, duplicates allowed, index access. Set – no duplicates. Map – key-value pairs, unique keys.
+
+21. **HashSet vs TreeSet vs LinkedHashSet?** HashSet – no order, O(1). LinkedHashSet – insertion order. TreeSet – sorted order, O(log n).
+
+22. **How does HashMap work internally? (very common)**
+    1. `put(key, value)` calls `key.hashCode()`, then computes a bucket index from it.
+    2. The entry is stored in that bucket (an array of nodes).
+    3. If two keys land in the same bucket (**collision**), entries are chained in a linked list; since Java 8, when a bucket exceeds 8 entries it becomes a **red-black tree** (O(log n)).
+    4. `get(key)` finds the bucket via hash, then uses `equals()` to find the exact key.
+    5. Default capacity 16, **load factor 0.75** → when 75% full, it **rehashes** (doubles capacity).
+    Allows **one null key** and many null values. Not thread-safe → use `ConcurrentHashMap`.
+
+23. **HashMap vs Hashtable vs ConcurrentHashMap?** HashMap – not synchronized, allows null. Hashtable – legacy, fully synchronized (slow), no null. ConcurrentHashMap – thread-safe with fine-grained locking, no null.
+
+24. **Comparable vs Comparator?** `Comparable` – natural ordering inside the class (`compareTo`), one sort order. `Comparator` – external, many sort orders (`compare`), e.g., `list.sort(Comparator.comparing(Employee::getSalary))`.
+
+25. **Fail-fast vs fail-safe iterators?** Fail-fast (ArrayList, HashMap) throw `ConcurrentModificationException` if the collection is modified during iteration. Fail-safe (CopyOnWriteArrayList, ConcurrentHashMap) work on a copy/snapshot. To remove while iterating, use `iterator.remove()` or `removeIf`.
+
+### 6.5 Java 8+ Features
+
+26. **Main Java 8 features?** Lambda expressions, Functional interfaces, Stream API, default & static methods in interfaces, Optional, new Date/Time API (`java.time`), method references.
+
+27. **Lambda expression & functional interface?** A lambda is an anonymous function: `(a, b) -> a + b`. A **functional interface** has exactly one abstract method (`Runnable`, `Comparator`, `Predicate<T>`, `Function<T,R>`, `Consumer<T>`, `Supplier<T>`), marked with `@FunctionalInterface`.
+
+28. **Stream API example (very common: "filter and map using streams").**
+    ```java
+    List<Integer> nums = List.of(1, 2, 3, 4, 5, 6);
+    List<Integer> squaresOfEven = nums.stream()
+            .filter(n -> n % 2 == 0)   // 2, 4, 6
+            .map(n -> n * n)           // 4, 16, 36
+            .collect(Collectors.toList());
+    int sum = nums.stream().mapToInt(Integer::intValue).sum(); // 21
+
+    // Group employees by department
+    Map<String, List<Employee>> byDept =
+        employees.stream().collect(Collectors.groupingBy(Employee::getDept));
+    ```
+    Intermediate operations (`filter`, `map`, `sorted`) are **lazy**; terminal operations (`collect`, `forEach`, `count`) trigger execution.
+
+29. **`map` vs `flatMap`?** `map` transforms each element 1→1; `flatMap` transforms each element into a stream and flattens (`List<List<T>>` → `List<T>`).
+
+30. **Optional?** A container that may or may not hold a value — avoids `NullPointerException`: `Optional.ofNullable(name).orElse("Guest")`.
+
+### 6.6 Multithreading (basics only for freshers)
+
+31. **Process vs Thread?** A process is an independent program with its own memory; threads are lightweight units inside a process sharing its memory.
+
+32. **Ways to create a thread?** Extend `Thread`, implement `Runnable` (preferred — your class can still extend another), or use `ExecutorService`/`Callable` for thread pools and results.
+
+33. **`start()` vs `run()`?** `start()` creates a new thread which then calls `run()`. Calling `run()` directly just runs it on the current thread.
+
+34. **What is synchronization / deadlock?** `synchronized` lets only one thread at a time enter a block/method on the same lock (prevents race conditions). **Deadlock**: two threads each hold a lock the other needs, waiting forever. Prevent by always acquiring locks in the same order.
+
+35. **`volatile`?** Guarantees visibility of a variable's latest value across threads (no caching in thread-local CPU cache). Doesn't make `count++` atomic — use `AtomicInteger`.
+
+### 6.7 Misc
+
+36. **Garbage collection?** JVM automatically frees heap objects that are no longer reachable. You can request it with `System.gc()`, but it's not guaranteed.
+
+37. **Can we overload/override `main`?** Overload — yes (JVM only calls the `String[]` version). Override — no, it's static.
+
+38. **Marker interface?** An interface with no methods that marks a capability — `Serializable`, `Cloneable`.
+
+39. **Serialization?** Converting an object into a byte stream (to save to a file / send over network). `transient` fields are skipped.
+
+40. **What is Spring Boot? (good to mention if you know Java)** A framework to build production-ready Java web apps/REST APIs quickly: auto-configuration, embedded Tomcat, starters, and **Dependency Injection / IoC container**. Key annotations: `@SpringBootApplication`, `@RestController`, `@GetMapping`, `@Autowired`, `@Service`, `@Repository`, `@Entity`.
+
+---
+
+## 7. C# and .NET — Interview Questions
+
+The INF lists ".NET (C#, .NET Core, .NET 8+)" **first** — if you have time, learning these basics is a big plus even if Java is your main language.
+
+### 7.1 .NET Platform
+
+1. **What is .NET? .NET Framework vs .NET Core vs .NET 5/6/7/8+?**
+   .NET is Microsoft's free, open-source developer platform.
+   - **.NET Framework** (up to 4.8) — Windows-only, legacy.
+   - **.NET Core** (1.0–3.1) — cross-platform rewrite, open source, high performance.
+   - **.NET 5+ (5, 6, 7, 8, 9, 10)** — the unified successor ("Core" dropped from the name). **Even versions (6, 8, 10) are LTS** (long-term support). .NET 8 = LTS released Nov 2023; .NET 10 = LTS released Nov 2025.
+
+2. **CLR, CTS, CLS, IL, JIT?**
+   - **CLR (Common Language Runtime)** — the .NET "virtual machine": memory management, GC, type safety, exception handling, JIT. (≈ JVM)
+   - **IL / MSIL / CIL** — intermediate code produced by the C# compiler. (≈ bytecode)
+   - **JIT** — compiles IL to native machine code at runtime.
+   - **CTS (Common Type System)** — defines types so all .NET languages (C#, F#, VB) share them.
+   - **CLS (Common Language Specification)** — subset of rules for cross-language compatibility.
+   Flow: `.cs` → C# compiler (Roslyn) → IL in an **assembly** (.dll/.exe) → CLR + JIT → machine code.
+
+3. **What is an assembly? NuGet?** An assembly is the compiled unit (.dll/.exe) containing IL + metadata + manifest. **NuGet** is .NET's package manager (like Maven for Java / npm for JS).
+
+4. **Managed vs unmanaged code?** Managed code runs under the CLR (GC, type safety). Unmanaged code runs directly on the OS (C/C++ DLLs, file handles) — must be released manually, typically via `IDisposable`.
+
+### 7.2 C# Language
+
+5. **Value types vs reference types?**
+   - **Value types:**
+      - `int, double, bool, char, decimal, struct, enum`
+      - Hold data directly
+      - Copy on assignment
+      - Usually on the stack (or inline in their container)
+      - Can't be null unless `int?`
+   - **Reference types:**
+      - `class, interface, delegate, string, arrays, object`
+      - Hold a reference to data on the heap
+      - Assignment copies the reference
+      - Object lives on the managed heap
+      - Can be null
+
+   *(Precise version: "value types are stored where they're declared — locals on the stack, fields inline inside their containing object.")*
+
+6. **Boxing and unboxing?** Boxing = value type → `object` (copied to heap): `object o = 10;`. Unboxing = explicit back: `int i = (int)o;`. Costly — generics (`List<int>`) avoid it.
+
+7. **`struct` vs `class`?** Struct: value type, no inheritance (can implement interfaces), good for small immutable data (Point, DateTime). Class: reference type, inheritance, the default choice. **`record`** (C# 9+) = a type with value-based equality, great for immutable DTOs: `public record Person(string Name, int Age);`
+
+8. **`const` vs `readonly` vs `static readonly`?** `const` – compile-time constant, implicitly static, primitives/strings only. `readonly` – assigned at declaration or in constructor (per object). `static readonly` – runtime constant shared by the class (e.g., `static readonly DateTime StartTime = DateTime.Now;`).
+
+9. **`ref` vs `out` vs `in`?** All pass by reference. `ref` – must be initialised before passing; method may read/modify. `out` – needn't be initialised; method **must** assign it (`int.TryParse(s, out int n)`). `in` – read-only reference.
+
+10. **`virtual`, `override`, `new`, `abstract`, `sealed`?**
+    - `virtual` – parent allows overriding. `override` – child overrides it (runtime polymorphism).
+    - `new` – **method hiding**: child's method hides the parent's; call depends on the **reference type**.
+    - `abstract` – no body, must be overridden. `sealed` – no further inheritance/overriding.
+    ```csharp
+    class A { public virtual void Show() => Console.WriteLine("A"); }
+    class B : A { public override void Show() => Console.WriteLine("B"); }
+    class C : A { public new void Show() => Console.WriteLine("C"); }
+    A b = new B(); b.Show();  // B  (override)
+    A c = new C(); c.Show();  // A  (hiding — reference type decides)
+    ```
+
+11. **`string` vs `StringBuilder`?** Strings are immutable; each change creates a new object. Use `StringBuilder` for many concatenations in loops.
+
+12. **`==` vs `.Equals()` in C#?** For reference types, `==` compares references by default, but **string overloads `==` to compare content**. `.Equals()` compares content where overridden.
+
+13. **Nullable types & null operators?** `int? x = null;` · `??` (null-coalescing) · `??=` · `?.` (null-conditional: `customer?.Address?.City`) · nullable reference types (`string?`) with compiler warnings enabled by default in new projects.
+
+14. **`var` vs `dynamic` vs `object`?** `var` – type inferred at **compile time**, still strongly typed. `dynamic` – type checked at **runtime** (errors at runtime). `object` – base type; needs casting.
+
+15. **Properties & auto-properties?**
+    ```csharp
+    public class Employee
+    {
+        public int Id { get; init; }               // set only during initialisation (C# 9)
+        public string Name { get; set; } = "";
+        private decimal _salary;
+        public decimal Salary
+        {
+            get => _salary;
+            set => _salary = value >= 0 ? value : throw new ArgumentException("Salary < 0");
+        }
+    }
+    ```
+    Properties are C#'s encapsulation tool — getters/setters with field-like syntax.
+
+16. **Interface vs abstract class in C#?** Same as Section 5 Q10. C# 8+ allows **default interface methods**. A class can inherit **one** class and implement **many** interfaces.
+
+17. **Delegates, events, `Func`, `Action`, `Predicate`?**
+    A **delegate** is a type-safe function pointer. **Events** are delegates with publisher–subscriber restrictions (only the owner can raise them).
+    ```csharp
+    Func<int, int, int> add = (a, b) => a + b;   // returns a value
+    Action<string> log = msg => Console.WriteLine(msg); // returns void
+    Predicate<int> isEven = n => n % 2 == 0;       // returns bool
+    Console.WriteLine(add(2, 3));  // 5
+
+    public class Button
+    {
+        public event EventHandler? Clicked;
+        public void Click() => Clicked?.Invoke(this, EventArgs.Empty);
+    }
+    ```
+
+18. **Generics?** Type-safe reusable code without boxing: `List<T>`, `Dictionary<TKey,TValue>`, `class Repository<T> where T : class`. Constraints: `where T : class / struct / new() / IComparable`.
+
+19. **Collections?** `List<T>` (dynamic array), `Dictionary<K,V>` (hash map), `HashSet<T>`, `Queue<T>`, `Stack<T>`, `LinkedList<T>`, `SortedDictionary`. Legacy non-generic `ArrayList`/`Hashtable` — avoid. `IEnumerable<T>` = can iterate; `ICollection<T>` adds Count/Add; `IList<T>` adds index access.
+
+20. **`IEnumerable` vs `IQueryable`?** `IEnumerable` – query runs **in memory** (LINQ to Objects). `IQueryable` – builds an expression tree that a provider (Entity Framework) translates into **SQL executed in the database** → filtering happens on the DB server (more efficient for large tables).
+
+21. **LINQ — examples (very common).**
+    ```csharp
+    var nums = new List<int> { 5, 3, 8, 1, 9, 2 };
+    var evens  = nums.Where(n => n % 2 == 0).ToList();       // 8, 2
+    var sorted = nums.OrderByDescending(n => n).ToList();    // 9,8,5,3,2,1
+    int max    = nums.Max();                                  // 9
+    var secondHighest = nums.OrderByDescending(n => n).Skip(1).First(); // 8
+
+    // Group employees by department and count
+    var counts = employees
+        .GroupBy(e => e.Dept)
+        .Select(g => new { Dept = g.Key, Count = g.Count(), AvgSal = g.Average(e => e.Salary) });
+
+    // Query syntax
+    var rich = from e in employees where e.Salary > 50000 orderby e.Name select e.Name;
+    ```
+    `First()` throws if empty; `FirstOrDefault()` returns default. `Single()` throws if not exactly one. Deferred execution: query runs when enumerated (`ToList()`, `foreach`, `Count()`).
+
+22. **Exception handling in C#?** `try / catch / finally`, `throw;` (re-throw keeps stack trace) vs `throw ex;` (resets the stack trace — avoid). Exception filters: `catch (HttpRequestException e) when (e.StatusCode == HttpStatusCode.NotFound)`. C# has **no checked exceptions**.
+
+23. **`IDisposable` and `using`?** For releasing unmanaged resources (files, DB connections) deterministically.
+    ```csharp
+    using var conn = new SqlConnection(connStr);   // Dispose() called automatically at scope end
+    conn.Open();
+    ```
+
+24. **Garbage Collection in .NET?** Automatic memory management. Heap is divided into **generations 0, 1, 2** (+ Large Object Heap for objects ≥ 85 KB). New objects start in Gen 0; survivors are promoted. Most objects die young → collecting Gen 0 is cheap and frequent. `Finalize` (destructor `~ClassName`) is non-deterministic; prefer `Dispose`.
+
+25. **async/await (very common in .NET interviews).**
+    `async` methods return `Task`/`Task<T>`; `await` frees the thread while waiting for I/O (DB, HTTP, file) instead of blocking — the app can serve other requests meanwhile.
+    ```csharp
+    public async Task<string> GetPageAsync(string url)
+    {
+        using var client = new HttpClient();
+        string html = await client.GetStringAsync(url);  // thread is released while waiting
+        return html;
+    }
+    ```
+    Gotchas: avoid `async void` (except event handlers); avoid `.Result`/`.Wait()` (can deadlock); async ≠ multithreading — it's about not blocking while waiting.
+
+26. **Extension methods?**
+    ```csharp
+    public static class StringExtensions
+    {
+        public static bool IsPalindrome(this string s) =>
+            s.SequenceEqual(s.Reverse());
+    }
+    // "madam".IsPalindrome()  → true
+    ```
+    A static method in a static class with `this` on the first parameter — adds methods to existing types without inheritance. LINQ is built this way.
+
+27. **Partial classes, static classes, sealed classes?** Partial – one class split across files. Static – can't instantiate, only static members (utility). Sealed – can't be inherited (`string` is sealed).
+
+### 7.3 ASP.NET Core / Web API
+
+28. **What is ASP.NET Core?** A cross-platform, high-performance framework for building web apps and **REST APIs** with C#. Runs on **Kestrel** web server; built-in DI, configuration, logging, middleware pipeline.
+
+29. **Explain `Program.cs` in a minimal .NET 8 Web API.**
+    ```csharp
+    var builder = WebApplication.CreateBuilder(args);
+
+    // 1. Register services (Dependency Injection container)
+    builder.Services.AddControllers();
+    builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
+    var app = builder.Build();
+
+    // 2. Configure the middleware pipeline (ORDER MATTERS)
+    if (app.Environment.IsDevelopment()) { app.UseSwagger(); app.UseSwaggerUI(); }
+    app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
+    app.MapControllers();
+
+    // Minimal API endpoint
+    app.MapGet("/hello", () => "Hello QualiZeal!");
+
+    app.Run();
+    ```
+
+30. **What is middleware?** Components arranged in a **pipeline**; each receives the HTTP request, can do work, then call the next one (or short-circuit), and can act on the response on the way back. Examples: exception handling, HTTPS redirection, static files, routing, CORS, authentication, authorization. **Order matters** (authentication must come before authorization).
+    ```csharp
+    app.Use(async (context, next) =>
+    {
+        Console.WriteLine($"Request: {context.Request.Path}");
+        await next();                       // call next middleware
+        Console.WriteLine($"Response: {context.Response.StatusCode}");
+    });
+    ```
+
+31. **Dependency Injection & service lifetimes (top question).**
+    DI = a class receives its dependencies from outside (usually via constructor) instead of creating them with `new` → loose coupling, easy unit testing (inject a fake/mock).
+    - **Transient (`AddTransient`):**
+       - *Instance created:* Every time it's requested
+       - *Typical use:* Lightweight, stateless services
+    - **Scoped (`AddScoped`):**
+       - *Instance created:* Once per HTTP request
+       - *Typical use:* `DbContext`, business services
+    - **Singleton (`AddSingleton`):**
+       - *Instance created:* Once for app lifetime
+       - *Typical use:* Caching, configuration
+
+    Gotcha: never inject a Scoped service into a Singleton ("captive dependency").
+    ```csharp
+    [ApiController]
+    [Route("api/[controller]")]
+    public class EmployeesController : ControllerBase
+    {
+        private readonly IEmployeeService _service;
+        public EmployeesController(IEmployeeService service) => _service = service; // injected
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Employee>> Get(int id)
+        {
+            var emp = await _service.GetByIdAsync(id);
+            return emp is null ? NotFound() : Ok(emp);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Employee e)
+        {
+            var created = await _service.AddAsync(e);
+            return CreatedAtAction(nameof(Get), new { id = created.Id }, created);  // 201
+        }
+    }
+    ```
+
+32. **MVC pattern?** **Model** (data + business logic), **View** (UI), **Controller** (handles request, talks to model, returns view/data). Web API controllers return data (JSON) instead of views.
+
+33. **Routing?** Maps URLs to endpoints. Attribute routing: `[Route("api/[controller]")]`, `[HttpGet("{id:int}")]`. Model binding pulls values from route, query string (`[FromQuery]`), body (`[FromBody]`), headers.
+
+34. **Filters?** Run code before/after action execution: Authorization filters, Resource, **Action filters**, Exception filters, Result filters (e.g., global logging, validation).
+
+35. **`appsettings.json` & configuration?** Settings like connection strings; environment-specific `appsettings.Development.json`; read with `IConfiguration` or the **Options pattern** (`IOptions<T>`). Secrets → environment variables / User Secrets / Azure Key Vault, never in Git.
+
+36. **Entity Framework Core?** Microsoft's **ORM** — maps C# classes to DB tables so you query with LINQ instead of raw SQL.
+    - `DbContext` (session with DB), `DbSet<T>` (table).
+    - **Code-First** (classes → migrations → DB: `dotnet ef migrations add Init`, `dotnet ef database update`) vs **Database-First**.
+    - Loading: eager (`Include`), lazy, explicit. `AsNoTracking()` for read-only queries (faster).
+    ```csharp
+    public class AppDbContext : DbContext
+    {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public DbSet<Employee> Employees => Set<Employee>();
+    }
+    var highEarners = await db.Employees.Where(e => e.Salary > 50000).ToListAsync();
+    ```
+
+37. **Authentication vs Authorization? JWT?** Authentication = *who are you* (login). Authorization = *what can you do* (roles/policies). **JWT** (JSON Web Token) = header.payload.signature, sent as `Authorization: Bearer <token>`, stateless; the server validates the signature. Use `[Authorize]` and `[Authorize(Roles = "Admin")]`.
+
+38. **What's new / important in .NET 8?** LTS release; **Native AOT** improvements (fast startup, small memory), performance improvements, minimal APIs maturity, **Blazor** full-stack web UI, `TimeProvider`, keyed DI services, C# 12 (primary constructors for classes, collection expressions `int[] a = [1, 2, 3];`). (.NET 9 and **.NET 10 (LTS, Nov 2025)** continue this — mention you are aware of them.)
+
+39. **What is Blazor?** Build interactive web UIs with **C# instead of JavaScript** (Blazor Server / WebAssembly / unified "Blazor Web App" in .NET 8).
+
+40. **What is Swagger / OpenAPI?** Auto-generated, interactive documentation for your APIs; lets testers/devs try endpoints in the browser.
+
+---
+
+## 8. Java vs C# — Comparison Table
+
+- **Runtime:** Java — JVM | C# — CLR
+- **Intermediate code:** Java — Bytecode (.class) | C# — IL in assemblies (.dll/.exe)
+- **Package manager:** Java — Maven / Gradle | C# — NuGet
+- **Inheritance keyword:** Java — `extends` / `implements` | C# — `:` for both
+- **Call parent:** Java — `super` | C# — `base`
+- **Prevent inheritance:** Java — `final class` | C# — `sealed class`
+- **Constant:** Java — `static final` | C# — `const` / `readonly`
+- **Overriding:** Java — All non-static, non-final methods are virtual by default; `@Override` | C# — Must mark `virtual` in parent and `override` in child
+- **Properties:** Java — getters/setters by convention | C# — built-in `{ get; set; }`
+- **String equality with `==`:** Java — compares **references** | C# — compares **values**
+- **Checked exceptions:** Java — Yes | C# — No
+- **User-defined value types:** Java — No (only primitives; records are reference types) | C# — Yes — `struct`
+- **Query collections:** Java — Streams API | C# — LINQ
+- **Async:** Java — CompletableFuture, virtual threads (Java 21) | C# — `async` / `await` with `Task`
+- **Function types:** Java — Functional interfaces (`Function`, `Predicate`) | C# — Delegates (`Func`, `Action`, `Predicate`)
+- **Web framework:** Java — Spring Boot | C# — ASP.NET Core
+- **ORM:** Java — Hibernate / JPA | C# — Entity Framework Core
+- **Unit test frameworks:** Java — JUnit, TestNG, Mockito | C# — xUnit, NUnit, MSTest, Moq
+
+---
+
+## 9. Data Structures & Algorithms — Concepts
+
+1. **Array vs Linked List?** Array: contiguous memory, O(1) index access, fixed size (in raw arrays), costly middle insertion. Linked list: nodes with pointers, O(n) access, O(1) insertion/deletion at a known node, extra memory for pointers.
+
+2. **Stack vs Queue?** Stack — **LIFO** (push/pop/peek); uses: undo, browser back, function calls, balanced parentheses. Queue — **FIFO** (enqueue/dequeue); uses: printer jobs, BFS, task scheduling. Variants: circular queue, deque, priority queue (heap-based).
+
+3. **Time complexity / Big-O?** How running time grows with input size *n*, worst case. O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(2ⁿ) < O(n!).
+
+4. **Complexity of common operations**
+   - **Array index access:** O(1)
+   - **Linear search:** O(n)
+   - **Binary search (sorted):** O(log n)
+   - **HashMap get/put (average):** O(1)
+   - **Bubble / Selection / Insertion sort:** O(n²)
+   - **Merge sort:** O(n log n) always, O(n) extra space, **stable**
+   - **Quick sort:** O(n log n) average, O(n²) worst, in-place
+   - **BST search (balanced):** O(log n)
+
+5. **Tree terms?** Root, node, leaf, height, depth. **Binary tree** — at most 2 children. **BST** — left < root < right. Traversals: **Inorder (L-Root-R) of a BST gives sorted order**, Preorder (Root-L-R), Postorder (L-R-Root), Level order (BFS using a queue).
+
+6. **Graph basics?** Vertices + edges; directed/undirected; weighted. Representation: adjacency matrix (O(V²) space) or adjacency list. Traversals: **BFS** (queue, shortest path in unweighted graph), **DFS** (stack/recursion).
+
+7. **Hashing?** Map a key to an index using a hash function; collisions handled by chaining or open addressing.
+
+8. **Recursion?** A function calling itself with a **base case** to stop. Each call uses stack memory → too deep = stack overflow.
+
+9. **What is a heap?** A complete binary tree where parent ≥ children (max-heap) or ≤ (min-heap). Used in priority queues; heap sort O(n log n).
+
+10. **Which data structure would you use for…?**
+    - Undo/redo → Stack. Browser history → Stack (or two stacks). Print queue → Queue.
+    - Fast lookup by key → HashMap/Dictionary. Sorted unique items → TreeSet/SortedSet.
+    - Autocomplete → Trie. Shortest path in maps → Graph + Dijkstra. LRU cache → HashMap + Doubly linked list.
+
+---
+
+## 10. Coding Round — Must-Practice Programs
+
+Write each one **by hand on paper** at least once — interviewers often ask you to write code without an IDE. Java is shown; C# is nearly identical (`Console.WriteLine`, `string`, `Length`, etc.). Always state the time complexity at the end.
+
+### 10.1 Number programs
+
+1. **Check prime** — O(√n)
+   ```java
+   static boolean isPrime(int n) {
+       if (n < 2) return false;
+       for (int i = 2; (long) i * i <= n; i++)
+           if (n % i == 0) return false;
+       return true;
+   }
+   ```
+   *Why √n:* if n = a × b, one of a, b must be ≤ √n.
+
+2. **Fibonacci series (first n terms)** — O(n)
+   ```java
+   static void fibonacci(int n) {
+       int a = 0, b = 1;
+       for (int i = 0; i < n; i++) {
+           System.out.print(a + " ");
+           int next = a + b;
+           a = b;
+           b = next;
+       }
+   }
+   // n = 7 → 0 1 1 2 3 5 8
+   ```
+
+3. **Factorial (iterative and recursive)**
+   ```java
+   static long factorial(int n) {
+       long f = 1;
+       for (int i = 2; i <= n; i++) f *= i;
+       return f;
+   }
+   static long factRec(int n) { return n <= 1 ? 1 : n * factRec(n - 1); }
+   ```
+
+4. **Reverse a number & check palindrome number**
+   ```java
+   static int reverse(int n) {
+       int rev = 0;
+       while (n != 0) {
+           rev = rev * 10 + n % 10;
+           n /= 10;
+       }
+       return rev;
+   }
+   static boolean isPalindrome(int n) { return n >= 0 && n == reverse(n); }
+   // 121 → true, 123 → false
+   ```
+
+5. **Armstrong number** (sum of each digit raised to the number of digits equals the number: 153 = 1³ + 5³ + 3³)
+   ```java
+   static boolean isArmstrong(int n) {
+       int digits = String.valueOf(n).length(), sum = 0, temp = n;
+       while (temp > 0) {
+           sum += (int) Math.pow(temp % 10, digits);
+           temp /= 10;
+       }
+       return sum == n;
+   }
+   ```
+
+6. **Sum of digits** — `while (n > 0) { sum += n % 10; n /= 10; }`
+
+7. **Swap two numbers without a third variable**
+   ```java
+   a = a + b;   // a=15 (a=5,b=10)
+   b = a - b;   // b=5
+   a = a - b;   // a=10
+   // or XOR: a ^= b; b ^= a; a ^= b;
+   ```
+
+8. **GCD (Euclid's algorithm) and LCM** — O(log min(a,b))
+   ```java
+   static int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
+   static int lcm(int a, int b) { return a / gcd(a, b) * b; }
+   ```
+
+9. **Second largest digit in a number (without arrays)** *(reported as asked in trainee interviews)*
+   ```java
+   static int secondLargestDigit(int n) {
+       int first = -1, second = -1;
+       while (n > 0) {
+           int d = n % 10;
+           if (d > first) { second = first; first = d; }
+           else if (d > second && d != first) second = d;
+           n /= 10;
+       }
+       return second;   // -1 if it doesn't exist
+   }
+   // 52871 → 7
+   ```
+
+10. **FizzBuzz**
+    ```java
+    for (int i = 1; i <= 100; i++) {
+        if (i % 15 == 0) System.out.println("FizzBuzz");
+        else if (i % 3 == 0) System.out.println("Fizz");
+        else if (i % 5 == 0) System.out.println("Buzz");
+        else System.out.println(i);
+    }
+    ```
+    (Check 15 first — common mistake is checking 3 first.)
+
+### 10.2 String programs
+
+11. **Reverse a string (without built-in reverse)**
+    ```java
+    static String reverse(String s) {
+        char[] c = s.toCharArray();
+        for (int i = 0, j = c.length - 1; i < j; i++, j--) {
+            char t = c[i]; c[i] = c[j]; c[j] = t;
+        }
+        return new String(c);
+    }
+    // Built-in: new StringBuilder(s).reverse().toString();
+    // C#: new string(s.Reverse().ToArray());
+    ```
+
+12. **Palindrome string (ignoring case)** — two pointers, O(n)
+    ```java
+    static boolean isPalindrome(String s) {
+        s = s.toLowerCase();
+        int i = 0, j = s.length() - 1;
+        while (i < j) if (s.charAt(i++) != s.charAt(j--)) return false;
+        return true;
+    }
+    ```
+
+13. **Count vowels and consonants**
+    ```java
+    int vowels = 0, consonants = 0;
+    for (char ch : s.toLowerCase().toCharArray()) {
+        if (Character.isLetter(ch)) {
+            if ("aeiou".indexOf(ch) >= 0) vowels++; else consonants++;
+        }
+    }
+    ```
+
+14. **Character frequency / first non-repeating character** — O(n)
+    ```java
+    static Character firstNonRepeating(String s) {
+        Map<Character, Integer> freq = new LinkedHashMap<>();   // keeps insertion order
+        for (char c : s.toCharArray()) freq.put(c, freq.getOrDefault(c, 0) + 1);
+        for (Map.Entry<Character, Integer> e : freq.entrySet())
+            if (e.getValue() == 1) return e.getKey();
+        return null;
+    }
+    // "swiss" → 'w'
+    ```
+    C#: `s.GroupBy(c => c).First(g => g.Count() == 1).Key` (GroupBy preserves first-occurrence order).
+
+15. **Anagram check** — "listen" / "silent"
+    ```java
+    static boolean isAnagram(String a, String b) {
+        if (a.length() != b.length()) return false;
+        int[] count = new int[26];
+        for (int i = 0; i < a.length(); i++) {
+            count[a.charAt(i) - 'a']++;
+            count[b.charAt(i) - 'a']--;
+        }
+        for (int c : count) if (c != 0) return false;
+        return true;
+    }
+    ```
+    O(n) time, O(1) space (lowercase letters). Alternative: sort both and compare — O(n log n).
+
+16. **Reverse the words in a sentence** — "I love Java" → "Java love I"
+    ```java
+    String[] words = s.trim().split("\\s+");
+    StringBuilder sb = new StringBuilder();
+    for (int i = words.length - 1; i >= 0; i--) {
+        sb.append(words[i]);
+        if (i > 0) sb.append(" ");
+    }
+    // C#: string.Join(" ", s.Split(' ', StringSplitOptions.RemoveEmptyEntries).Reverse());
+    ```
+
+17. **Remove duplicate characters (keep first occurrence)** — "programming" → "progamin"
+    ```java
+    StringBuilder sb = new StringBuilder();
+    Set<Character> seen = new HashSet<>();
+    for (char c : s.toCharArray()) if (seen.add(c)) sb.append(c);
+    ```
+
+18. **String compression** — "aaabbc" → "a3b2c1"
+    ```java
+    static String compress(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); ) {
+            int j = i;
+            while (j < s.length() && s.charAt(j) == s.charAt(i)) j++;
+            sb.append(s.charAt(i)).append(j - i);
+            i = j;
+        }
+        return sb.toString();
+    }
+    ```
+
+19. **Balanced parentheses (Stack)** — "{[()]}" → true, "([)]" → false
+    ```java
+    static boolean isBalanced(String s) {
+        Deque<Character> st = new ArrayDeque<>();
+        for (char c : s.toCharArray()) {
+            if (c == '(' || c == '{' || c == '[') st.push(c);
+            else if (c == ')' || c == '}' || c == ']') {
+                if (st.isEmpty()) return false;
+                char open = st.pop();
+                if ((c == ')' && open != '(') || (c == '}' && open != '{') || (c == ']' && open != '['))
+                    return false;
+            }
+        }
+        return st.isEmpty();
+    }
+    ```
+
+### 10.3 Array programs
+
+20. **Largest and second largest in one pass** — O(n)
+    ```java
+    static int secondLargest(int[] a) {
+        int first = Integer.MIN_VALUE, second = Integer.MIN_VALUE;
+        for (int x : a) {
+            if (x > first) { second = first; first = x; }
+            else if (x > second && x != first) second = x;
+        }
+        return second;   // Integer.MIN_VALUE means "no second largest"
+    }
+    ```
+
+21. **Find the missing number in 1..n** — O(n), O(1) space
+    ```java
+    static int missing(int[] a, int n) {          // a has n-1 numbers from 1..n
+        long expected = (long) n * (n + 1) / 2;
+        long actual = 0;
+        for (int x : a) actual += x;
+        return (int) (expected - actual);
+    }
+    ```
+
+22. **Find duplicates in an array**
+    ```java
+    Set<Integer> seen = new HashSet<>(), dups = new HashSet<>();
+    for (int x : arr) if (!seen.add(x)) dups.add(x);
+    ```
+
+23. **Two Sum** (indices of two numbers adding up to target) — O(n) with a HashMap
+    ```java
+    static int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> idx = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int need = target - nums[i];
+            if (idx.containsKey(need)) return new int[]{idx.get(need), i};
+            idx.put(nums[i], i);
+        }
+        return new int[0];
+    }
+    ```
+    Explain: brute force is O(n²); the map remembers what we've seen.
+
+24. **Reverse an array in place / rotate array by k**
+    ```java
+    static void reverse(int[] a, int i, int j) {
+        while (i < j) { int t = a[i]; a[i++] = a[j]; a[j--] = t; }
+    }
+    static void rotateRight(int[] a, int k) {        // [1,2,3,4,5], k=2 → [4,5,1,2,3]
+        int n = a.length; k %= n;
+        reverse(a, 0, n - 1); reverse(a, 0, k - 1); reverse(a, k, n - 1);
+    }
+    ```
+
+25. **Move all zeros to the end (keep order)** — [0,1,0,3,12] → [1,3,12,0,0]
+    ```java
+    int pos = 0;
+    for (int x : a) if (x != 0) a[pos++] = x;
+    while (pos < a.length) a[pos++] = 0;
+    ```
+
+26. **Maximum subarray sum (Kadane's algorithm)** — O(n)
+    ```java
+    static int maxSubArray(int[] a) {
+        int best = a[0], cur = a[0];
+        for (int i = 1; i < a.length; i++) {
+            cur = Math.max(a[i], cur + a[i]);   // extend or start fresh
+            best = Math.max(best, cur);
+        }
+        return best;
+    }
+    // [-2,1,-3,4,-1,2,1,-5,4] → 6  (4,-1,2,1)
+    ```
+
+27. **Binary search** — O(log n), array must be sorted
+    ```java
+    static int binarySearch(int[] a, int key) {
+        int lo = 0, hi = a.length - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;     // avoids int overflow
+            if (a[mid] == key) return mid;
+            if (a[mid] < key) lo = mid + 1; else hi = mid - 1;
+        }
+        return -1;
+    }
+    ```
+
+28. **Bubble sort** — O(n²), with early exit if already sorted
+    ```java
+    static void bubbleSort(int[] a) {
+        for (int i = 0; i < a.length - 1; i++) {
+            boolean swapped = false;
+            for (int j = 0; j < a.length - 1 - i; j++) {
+                if (a[j] > a[j + 1]) {
+                    int t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;
+                    swapped = true;
+                }
+            }
+            if (!swapped) break;
+        }
+    }
+    ```
+
+29. **Merge two sorted arrays**
+    ```java
+    static int[] merge(int[] a, int[] b) {
+        int[] r = new int[a.length + b.length];
+        int i = 0, j = 0, k = 0;
+        while (i < a.length && j < b.length) r[k++] = a[i] <= b[j] ? a[i++] : b[j++];
+        while (i < a.length) r[k++] = a[i++];
+        while (j < b.length) r[k++] = b[j++];
+        return r;
+    }
+    ```
+
+### 10.4 Linked list & patterns
+
+30. **Reverse a linked list** — O(n), O(1) space
+    ```java
+    class Node { int val; Node next; Node(int v) { val = v; } }
+
+    static Node reverse(Node head) {
+        Node prev = null, cur = head;
+        while (cur != null) {
+            Node next = cur.next;   // save
+            cur.next = prev;        // reverse the link
+            prev = cur;             // move prev
+            cur = next;             // move cur
+        }
+        return prev;
+    }
+    ```
+    Related: **find middle node** — slow/fast pointers (slow moves 1, fast moves 2; when fast reaches end, slow is in the middle). **Detect a cycle** — same idea (Floyd's algorithm): if slow and fast ever meet, there's a cycle.
+
+**Bonus: Pyramid pattern** (n = 4)
+```java
+for (int i = 1; i <= n; i++) {
+    System.out.print(" ".repeat(n - i));
+    System.out.println("*".repeat(2 * i - 1));
+}
+/*
+   *
+  ***
+ *****
+*******
+*/
+```
+
+**Bonus: Count word frequency using Streams (Java) / LINQ (C#)**
+```java
+Map<String, Long> freq = Arrays.stream(text.toLowerCase().split("\\s+"))
+        .collect(Collectors.groupingBy(w -> w, Collectors.counting()));
+```
+```csharp
+var freq = text.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries)
+               .GroupBy(w => w)
+               .ToDictionary(g => g.Key, g => g.Count());
+```
+
+**Interview coding checklist:** 1) Repeat the problem and ask about edge cases (empty input, negatives, duplicates). 2) Say the brute-force idea first. 3) Improve it. 4) Write clean code with good names. 5) Dry-run with an example. 6) State time & space complexity.
+
+---
+
+## 11. DBMS — Interview Questions
+
+1. **DBMS vs RDBMS?** DBMS stores data (could be files/hierarchical). RDBMS stores data in **related tables** with keys and constraints, supports SQL, ACID and normalization (MySQL, SQL Server, PostgreSQL, Oracle).
+
+2. **SQL vs NoSQL?**
+   - **SQL (relational):**
+      - Fixed schema, tables
+      - Strong consistency, ACID, joins
+      - Banking, ERP, orders
+   - **NoSQL:**
+      - Flexible schema: document (MongoDB), key-value (Redis), column (Cassandra), graph (Neo4j)
+      - Often eventual consistency, horizontal scaling
+      - Big data, real-time feeds, catalogs, caching
+
+3. **Keys?**
+   - **Primary key** — uniquely identifies a row; NOT NULL + unique; one per table.
+   - **Candidate key** — any column set that could be the PK. **Alternate key** — candidate keys not chosen.
+   - **Super key** — any set of columns that uniquely identifies rows (may include extra columns).
+   - **Foreign key** — refers to the PK of another table → **referential integrity**.
+   - **Unique key** — unique values but **allows NULL** (one NULL in SQL Server; multiple in MySQL/PostgreSQL); many per table.
+   - **Composite key** — PK made of 2+ columns (e.g., `StudentId + CourseId` in Enrollment).
+   - **Surrogate key** — artificial ID (auto-increment/identity/GUID).
+
+4. **Constraints?** `NOT NULL`, `UNIQUE`, `PRIMARY KEY`, `FOREIGN KEY`, `CHECK (age >= 18)`, `DEFAULT`.
+
+5. **Normalization — 1NF, 2NF, 3NF, BCNF (very common).**
+   Normalization = organising tables to **reduce redundancy and avoid insert/update/delete anomalies**.
+   - **1NF:** atomic values (no lists in a cell), no repeating groups, each row unique.
+     *Bad:* `Phone = "98xx, 97xx"` → split into rows or a separate table.
+   - **2NF:** 1NF + **no partial dependency** (every non-key column depends on the *whole* composite key).
+     *Bad:* Enrollment(StudentId, CourseId, StudentName) — StudentName depends only on StudentId → move to Student table.
+   - **3NF:** 2NF + **no transitive dependency** (non-key → non-key).
+     *Bad:* Employee(EmpId, DeptId, DeptName) — DeptName depends on DeptId, not EmpId → move to Department table.
+   - **BCNF:** for every functional dependency X → Y, X must be a super key (stricter 3NF).
+   - **Denormalization:** intentionally adding redundancy for faster reads (reporting/analytics).
+
+6. **ACID properties** (with a bank-transfer example: move ₹1,000 from A to B)
+   - **Atomicity** — both debit and credit happen, or neither (rollback on failure).
+   - **Consistency** — DB moves from one valid state to another (total money unchanged, constraints hold).
+   - **Isolation** — concurrent transfers don't see each other's half-done work.
+   - **Durability** — once committed, survives crashes (write-ahead log).
+
+7. **Transactions in SQL?** `BEGIN TRANSACTION … COMMIT` or `ROLLBACK`; `SAVEPOINT` for partial rollback.
+
+8. **Isolation problems & levels?** Problems: **dirty read** (reading uncommitted data), **non-repeatable read** (same row gives different values in one transaction), **phantom read** (new rows appear). Levels (weak → strong): Read Uncommitted → Read Committed → Repeatable Read → Serializable.
+
+9. **Indexes?** A data structure (usually **B-tree / B+ tree**) that speeds up searches, like a book index. **Clustered index** — sorts and stores table rows in index order; only **one** per table (usually the PK). **Non-clustered** — separate structure pointing to rows; many allowed. Trade-off: faster SELECT, slower INSERT/UPDATE/DELETE, extra storage. Index columns used in WHERE, JOIN, ORDER BY.
+
+10. **View?** A virtual table defined by a stored SELECT. Uses: security (show only some columns), simplifying complex joins. A **materialized view** stores the result physically.
+
+11. **Stored procedure vs function?**
+    - **Stored procedure:**
+       - May or may not return values; can have OUT params
+       - Can do INSERT/UPDATE/DELETE, transactions
+       - Called with `EXEC`
+    - **Function:**
+       - Must return a value (scalar or table)
+       - Generally read-only (in SQL Server)
+       - Can be used inside SELECT/WHERE
+
+    Benefits: precompiled/plan reuse, less network traffic, security, reuse.
+
+12. **Trigger?** Code that runs automatically on INSERT/UPDATE/DELETE (e.g., audit log). Overuse makes logic hidden and hard to debug.
+
+13. **DELETE vs TRUNCATE vs DROP**
+    - **DELETE:**
+       - *Type:* DML
+       - *WHERE allowed:* Yes
+       - *Removes:* Selected rows
+       - *Rollback:* Yes
+       - *Triggers fire:* Yes
+       - *Identity reset:* No
+       - *Speed:* Slower (row by row log)
+    - **TRUNCATE:**
+       - *Type:* DDL
+       - *WHERE allowed:* No
+       - *Removes:* All rows
+       - *Rollback:* Yes inside a transaction in SQL Server/PostgreSQL; auto-commits in MySQL/Oracle
+       - *Triggers fire:* No
+       - *Identity reset:* Yes
+       - *Speed:* Fast
+    - **DROP:**
+       - *Type:* DDL
+       - *WHERE allowed:* No
+       - *Removes:* Whole table + structure
+       - *Rollback:* Same as TRUNCATE
+       - *Triggers fire:* No
+       - *Identity reset:* —
+       - *Speed:* Fast
+
+14. **SQL command categories?** **DDL** (CREATE, ALTER, DROP, TRUNCATE, RENAME), **DML** (INSERT, UPDATE, DELETE, MERGE), **DQL** (SELECT), **DCL** (GRANT, REVOKE), **TCL** (COMMIT, ROLLBACK, SAVEPOINT).
+
+15. **Joins?**
+    - **INNER** — only matching rows in both.
+    - **LEFT (OUTER)** — all from left + matches from right (NULL where none).
+    - **RIGHT (OUTER)** — all from right + matches from left.
+    - **FULL (OUTER)** — all from both (MySQL lacks it; emulate with LEFT UNION RIGHT).
+    - **CROSS** — Cartesian product (m × n rows).
+    - **SELF JOIN** — a table joined to itself (employee–manager).
+    *Classic question:* Table A has 5 rows, B has 4 rows, no matching keys. Rows from INNER? **0**. LEFT? **5**. CROSS? **20**.
+
+16. **WHERE vs HAVING?** WHERE filters rows before GROUP BY and can't use aggregates; HAVING filters groups after aggregation.
+
+17. **UNION vs UNION ALL?** UNION removes duplicates (slower, sorts/dedups); UNION ALL keeps all rows. Both need the same number and compatible types of columns.
+
+18. **Logical order of SQL execution (great to explain WHERE vs HAVING / alias errors):**
+    `FROM → JOIN/ON → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT/TOP`
+    That's why you can use a SELECT alias in ORDER BY but not in WHERE.
+
+19. **Subquery vs correlated subquery?** A subquery runs once independently; a **correlated** subquery references the outer query and runs once per outer row (often slower; can often be rewritten as a JOIN or window function).
+
+20. **ER model?** Entities (rectangles), attributes (ovals), relationships (diamonds); cardinality 1:1, 1:N, M:N (M:N needs a junction table).
+
+21. **CHAR vs VARCHAR?** CHAR(n) fixed length (padded); VARCHAR(n) variable length. NVARCHAR stores Unicode (SQL Server).
+
+22. **What is SQL injection and how do you prevent it?** An attacker inserts SQL into input (`' OR '1'='1`). Prevent with **parameterized queries / prepared statements**, ORMs, input validation, least-privilege DB accounts.
+    ```csharp
+    var cmd = new SqlCommand("SELECT * FROM Users WHERE Email = @email", conn);
+    cmd.Parameters.AddWithValue("@email", email);   // never string-concatenate user input
+    ```
+    ```java
+    PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE email = ?");
+    ps.setString(1, email);
+    ```
+
+---
+
+## 12. SQL — Queries Asked Again and Again
+
+Sample tables used below:
+```sql
+CREATE TABLE Department (
+    DeptId   INT PRIMARY KEY,
+    DeptName VARCHAR(50) NOT NULL
+);
+CREATE TABLE Employee (
+    EmpId     INT PRIMARY KEY,
+    Name      VARCHAR(50) NOT NULL,
+    Salary    DECIMAL(10,2),
+    DeptId    INT REFERENCES Department(DeptId),
+    ManagerId INT NULL REFERENCES Employee(EmpId),
+    JoinDate  DATE
+);
+```
+
+1. **Second highest salary** (most asked SQL question)
+   ```sql
+   -- Method 1: subquery (works everywhere)
+   SELECT MAX(Salary) FROM Employee
+   WHERE Salary < (SELECT MAX(Salary) FROM Employee);
+
+   -- Method 2: LIMIT/OFFSET (MySQL/PostgreSQL)
+   SELECT DISTINCT Salary FROM Employee ORDER BY Salary DESC LIMIT 1 OFFSET 1;
+
+   -- Method 3: window function (handles ties; change 2 to N for Nth highest)
+   SELECT DISTINCT Salary FROM (
+       SELECT Salary, DENSE_RANK() OVER (ORDER BY Salary DESC) AS rnk FROM Employee
+   ) t WHERE rnk = 2;
+   ```
+   SQL Server: `SELECT ... ORDER BY Salary DESC OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY;`
+
+2. **ROW_NUMBER vs RANK vs DENSE_RANK** — salaries 100, 90, 90, 80:
+   - **100:** ROW_NUMBER: 1 · RANK: 1 · DENSE_RANK: 1
+   - **90:** ROW_NUMBER: 2 · RANK: 2 · DENSE_RANK: 2
+   - **90:** ROW_NUMBER: 3 · RANK: 2 · DENSE_RANK: 2
+   - **80:** ROW_NUMBER: 4 · RANK: **4** · DENSE_RANK: **3**
+
+3. **Highest salary in each department (with employee name)**
+   ```sql
+   SELECT Name, DeptId, Salary FROM (
+       SELECT Name, DeptId, Salary,
+              RANK() OVER (PARTITION BY DeptId ORDER BY Salary DESC) AS rnk
+       FROM Employee
+   ) t
+   WHERE rnk = 1;
+   ```
+
+4. **Count of employees per department, only departments with more than 5**
+   ```sql
+   SELECT d.DeptName, COUNT(e.EmpId) AS EmpCount
+   FROM Department d
+   LEFT JOIN Employee e ON e.DeptId = d.DeptId
+   GROUP BY d.DeptName
+   HAVING COUNT(e.EmpId) > 5;
+   ```
+
+5. **Find duplicate records**
+   ```sql
+   SELECT Name, COUNT(*) AS Cnt
+   FROM Employee
+   GROUP BY Name
+   HAVING COUNT(*) > 1;
+   ```
+
+6. **Delete duplicates, keep one (lowest id)**
+   ```sql
+   -- Works in SQL Server / PostgreSQL (CTE delete)
+   WITH cte AS (
+       SELECT EmpId, ROW_NUMBER() OVER (PARTITION BY Name, Salary ORDER BY EmpId) AS rn
+       FROM Employee
+   )
+   DELETE FROM cte WHERE rn > 1;      -- SQL Server syntax
+
+   -- Portable version
+   DELETE FROM Employee
+   WHERE EmpId NOT IN (
+       SELECT MinId FROM (SELECT MIN(EmpId) AS MinId FROM Employee GROUP BY Name, Salary) x
+   );
+   ```
+   *(PostgreSQL: `DELETE FROM Employee WHERE EmpId IN (SELECT EmpId FROM cte WHERE rn > 1);`)*
+
+7. **Employees earning more than their manager (self join)**
+   ```sql
+   SELECT e.Name AS Employee, e.Salary, m.Name AS Manager, m.Salary AS ManagerSalary
+   FROM Employee e
+   JOIN Employee m ON e.ManagerId = m.EmpId
+   WHERE e.Salary > m.Salary;
+   ```
+
+8. **Employee name with manager name (include those without a manager)**
+   ```sql
+   SELECT e.Name, COALESCE(m.Name, 'No Manager') AS Manager
+   FROM Employee e
+   LEFT JOIN Employee m ON e.ManagerId = m.EmpId;
+   ```
+
+9. **Departments with no employees**
+   ```sql
+   SELECT d.DeptName
+   FROM Department d
+   LEFT JOIN Employee e ON e.DeptId = d.DeptId
+   WHERE e.EmpId IS NULL;
+   -- or: WHERE NOT EXISTS (SELECT 1 FROM Employee e WHERE e.DeptId = d.DeptId)
+   ```
+
+10. **Employees earning more than their department's average (correlated subquery)**
+    ```sql
+    SELECT e.Name, e.Salary, e.DeptId
+    FROM Employee e
+    WHERE e.Salary > (SELECT AVG(e2.Salary) FROM Employee e2 WHERE e2.DeptId = e.DeptId);
+    ```
+
+11. **Top 3 salaries**
+    ```sql
+    SELECT * FROM Employee ORDER BY Salary DESC LIMIT 3;            -- MySQL/PostgreSQL
+    SELECT TOP 3 * FROM Employee ORDER BY Salary DESC;               -- SQL Server
+    ```
+
+12. **Pattern matching**
+    ```sql
+    SELECT * FROM Employee WHERE Name LIKE 'A%';     -- starts with A
+    SELECT * FROM Employee WHERE Name LIKE '%n';     -- ends with n
+    SELECT * FROM Employee WHERE Name LIKE '_a%';    -- 2nd letter is a
+    SELECT * FROM Employee WHERE Salary BETWEEN 30000 AND 50000;  -- inclusive
+    SELECT * FROM Employee WHERE DeptId IN (1, 3);
+    ```
+
+13. **Employees who joined in the last 6 months / in 2025**
+    ```sql
+    SELECT * FROM Employee WHERE JoinDate >= CURRENT_DATE - INTERVAL '6 months';  -- PostgreSQL
+    SELECT * FROM Employee WHERE JoinDate >= DATEADD(MONTH, -6, GETDATE());       -- SQL Server
+    SELECT * FROM Employee WHERE YEAR(JoinDate) = 2025;                           -- MySQL/SQL Server
+    ```
+
+14. **Running total of salary (window function)**
+    ```sql
+    SELECT Name, Salary,
+           SUM(Salary) OVER (ORDER BY EmpId) AS RunningTotal
+    FROM Employee;
+    ```
+
+15. **Increase salary by 10% for department 2**
+    ```sql
+    UPDATE Employee SET Salary = Salary * 1.10 WHERE DeptId = 2;
+    ```
+
+16. **Add a column, rename, change type**
+    ```sql
+    ALTER TABLE Employee ADD Email VARCHAR(100);
+    ALTER TABLE Employee DROP COLUMN Email;
+    -- MySQL: ALTER TABLE Employee MODIFY Name VARCHAR(100);
+    -- SQL Server: ALTER TABLE Employee ALTER COLUMN Name VARCHAR(100);
+    ```
+
+17. **Copy table structure / data**
+    ```sql
+    CREATE TABLE EmpBackup AS SELECT * FROM Employee;          -- MySQL/PostgreSQL
+    SELECT * INTO EmpBackup FROM Employee;                     -- SQL Server
+    CREATE TABLE EmpEmpty AS SELECT * FROM Employee WHERE 1=0; -- structure only
+    ```
+
+18. **CASE expression**
+    ```sql
+    SELECT Name, Salary,
+           CASE WHEN Salary >= 80000 THEN 'High'
+                WHEN Salary >= 40000 THEN 'Medium'
+                ELSE 'Low' END AS Band
+    FROM Employee;
+    ```
+
+19. **Odd/even rows**
+    ```sql
+    SELECT * FROM Employee WHERE EmpId % 2 = 0;   -- MOD(EmpId, 2) = 0 in Oracle
+    ```
+
+20. **Count NULL vs non-NULL managers**
+    ```sql
+    SELECT COUNT(*) AS Total, COUNT(ManagerId) AS WithManager,
+           COUNT(*) - COUNT(ManagerId) AS WithoutManager
+    FROM Employee;
+    ```
+
+    **Practice:** type these into a free online SQL sandbox (e.g., db-fiddle.com, sqliteonline.com) or LeetCode's "SQL 50" study plan.
+
+---
+
+## 13. APIs, REST, HTTP & Web Basics
+
+1. **What is an API?** An Application Programming Interface is a contract that lets one software component talk to another. Restaurant analogy: you (client) → waiter (API) → kitchen (server). Web APIs exchange data over HTTP, usually as **JSON**.
+
+2. **What is REST? Its principles?** REpresentational State Transfer — an architectural style:
+   1. **Client–server** separation. 2. **Stateless** — each request carries everything needed (e.g., token); server stores no session. 3. **Cacheable** responses. 4. **Uniform interface** — resources identified by URLs (`/api/employees/5`), manipulated with HTTP verbs. 5. **Layered system** (load balancers, gateways). 6. Code on demand (optional).
+
+3. **HTTP methods & idempotency**
+   - **GET:** Read. Idempotent: Yes. Safe: Yes.
+   - **POST:** Create. Idempotent: **No** (two calls = two records). Safe: No.
+   - **PUT:** Replace whole resource. Idempotent: Yes. Safe: No.
+   - **PATCH:** Partial update. Idempotent: Not guaranteed. Safe: No.
+   - **DELETE:** Remove. Idempotent: Yes. Safe: No.
+   - **HEAD / OPTIONS:** Headers only / allowed methods (CORS preflight). Idempotent: Yes. Safe: Yes.
+
+   **Idempotent** = calling it many times has the same effect as calling once.
+
+4. **PUT vs PATCH vs POST?** POST creates (server picks the ID); PUT replaces the full resource at a known URL; PATCH updates only given fields.
+
+5. **Status codes**
+   - **200 OK:** Success
+   - **201 Created:** Resource created (return `Location` header)
+   - **204 No Content:** Success, no body (DELETE)
+   - **301 / 302 / 304:** Moved permanently / Found (temporary redirect) / Not Modified (cache)
+   - **400 Bad Request:** Validation error / malformed
+   - **401 Unauthorized:** Not authenticated (no/invalid token)
+   - **403 Forbidden:** Authenticated but not allowed
+   - **404 Not Found:** Resource doesn't exist
+   - **405 Method Not Allowed:** e.g., DELETE on a read-only endpoint
+   - **409 Conflict:** Duplicate / version conflict
+   - **415 Unsupported Media Type:** Wrong Content-Type
+   - **429 Too Many Requests:** Rate limited
+   - **500 Internal Server Error:** Server bug
+   - **502 / 503 / 504:** Bad gateway / Service unavailable / Gateway timeout
+
+   Memory trick: **2xx success, 3xx redirect, 4xx client's fault, 5xx server's fault.**
+
+6. **REST URL design best practices**
+   - Use nouns, plural: `GET /api/employees`, `GET /api/employees/42`, `POST /api/employees`, `GET /api/departments/3/employees`.
+   - Don't use verbs: ~~`/getEmployees`~~.
+   - Filtering/paging via query string: `/api/employees?dept=IT&page=2&size=20`.
+   - Versioning: `/api/v1/employees` or a header.
+
+7. **REST vs SOAP vs GraphQL**
+   - **REST:**
+      - Architectural style; JSON/XML
+      - Lightweight, cacheable
+   - **SOAP:**
+      - Strict protocol; XML only; WSDL
+      - Built-in WS-Security, heavy
+   - **GraphQL:**
+      - Query language; single endpoint
+      - Client asks exactly the fields it needs (no over/under-fetching)
+
+8. **Request/response structure?** Request: method, URL, headers (`Content-Type`, `Authorization`, `Accept`), body. Response: status code, headers, body.
+
+9. **Path param vs query param?** Path identifies a resource (`/employees/42`); query filters/sorts/pages (`/employees?dept=IT`).
+
+10. **Authentication methods for APIs?** API keys, Basic auth (only over HTTPS), **OAuth 2.0** (delegated access — "Login with Google"), **JWT bearer tokens**. HTTPS always.
+
+11. **What is CORS?** Cross-Origin Resource Sharing — browsers block JS from calling a different origin unless the server sends `Access-Control-Allow-Origin` headers. Configured on the server (e.g., `app.UseCors(...)`).
+
+12. **HTTP vs HTTPS?** HTTPS = HTTP over **TLS** — encrypts data, verifies server identity with certificates, ensures integrity. Default ports 80 vs 443.
+
+13. **Cookies vs Session vs Local Storage vs JWT?** Cookie — small data stored in browser, sent automatically with requests. Session — data stored on server, identified by a session-id cookie. LocalStorage — browser storage, not sent automatically. JWT — self-contained signed token; stateless.
+
+14. **How do you test an API?** Tools: **Postman**, Swagger UI, curl; automation with **RestAssured** (Java) or **HttpClient + xUnit/NUnit** (C#). Check: status code, response body/schema, headers, response time, negative cases (invalid input → 400, no token → 401, wrong id → 404), boundary values.
+
+15. **What happens when you type a URL in the browser? (classic)**
+    1. Browser checks cache → **DNS** lookup converts domain to IP.
+    2. **TCP** connection (3-way handshake: SYN, SYN-ACK, ACK) + **TLS handshake** for HTTPS.
+    3. Browser sends an **HTTP request**.
+    4. Server (via load balancer, web server, app, DB) processes it and sends an **HTTP response**.
+    5. Browser parses HTML, fetches CSS/JS/images, builds DOM + CSSOM, renders the page.
+
+16. **Microservices vs Monolith?** Monolith — one deployable app; simple to start, hard to scale parts independently. Microservices — small, independently deployable services communicating via APIs/messages; scalable and flexible but more complex (network, monitoring, data consistency). An **API Gateway** is the single entry point.
+
+17. **Web basics** — HTML (structure), CSS (style), JavaScript (behaviour). Frontend frameworks: React, Angular. JSON example: `{"id": 1, "name": "Asha", "skills": ["C#", "SQL"]}`.
+
+---
+
+## 14. Operating Systems & Computer Networks
+
+*(Usually 2–4 quick questions or MCQs.)*
+
+### Operating Systems
+1. **What is an OS?** Software that manages hardware and provides services to programs: process management, memory management, file system, I/O, security.
+
+2. **Process vs Thread?** Process: independent program in execution with its own address space; heavy context switch. Thread: lightweight unit within a process, shares memory; cheaper to create/switch.
+
+3. **Process states?** New → Ready → Running → Waiting/Blocked → Terminated.
+
+4. **CPU scheduling algorithms?** FCFS, SJF (shortest job first), Priority, **Round Robin** (time quantum, fair, used in time-sharing), Multilevel queue. Terms: turnaround time = completion − arrival; waiting time = turnaround − burst.
+
+5. **Deadlock — 4 necessary conditions (Coffman)?** **Mutual exclusion, Hold and wait, No preemption, Circular wait.** Break any one to prevent deadlock. **Banker's algorithm** avoids deadlock.
+
+6. **Mutex vs Semaphore?** Mutex: lock, one owner at a time, released by the owner. Semaphore: counter allowing up to N threads (binary semaphore ≈ mutex, but no ownership).
+
+7. **Paging, segmentation, virtual memory?** **Paging** — memory split into fixed-size pages/frames (no external fragmentation). **Segmentation** — variable-sized logical segments (code, stack). **Virtual memory** — uses disk to give the illusion of more RAM; **page fault** when a page isn't in RAM; **thrashing** when the system spends more time swapping than executing. Page replacement: FIFO, LRU, Optimal.
+
+8. **Internal vs external fragmentation?** Internal — wasted space inside an allocated block. External — free memory scattered in small chunks.
+
+9. **What is a race condition / critical section?** Race — result depends on thread timing on shared data. Critical section — code accessing shared resources; protect with locks.
+
+### Computer Networks
+10. **OSI model (7 layers)?** **P**hysical, **D**ata link, **N**etwork, **T**ransport, **S**ession, **P**resentation, **A**pplication — mnemonic "**P**lease **D**o **N**ot **T**hrow **S**ausage **P**izza **A**way". TCP/IP model has 4: Network Access, Internet, Transport, Application.
+
+    - **Application:** HTTP, HTTPS, FTP, SMTP, DNS
+    - **Transport:** TCP, UDP (ports)
+    - **Network:** IP, ICMP, routers
+    - **Data link:** Ethernet, MAC address, switches
+    - **Physical:** cables, hubs, bits
+
+11. **TCP vs UDP?**
+    - **TCP:**
+       - Connection-oriented (3-way handshake)
+       - Reliable, ordered, retransmits
+       - Slower
+       - Web, email, file transfer
+    - **UDP:**
+       - Connectionless
+       - No guarantee
+       - Faster
+       - Video calls, gaming, DNS, live streaming
+
+12. **IP address, MAC address, DNS, DHCP?** IP — logical network address (IPv4 32-bit, IPv6 128-bit). MAC — 48-bit physical hardware address. DNS — converts domain names to IP addresses. DHCP — automatically assigns IPs.
+
+13. **Common ports?** HTTP 80, HTTPS 443, FTP 21, SSH 22, SMTP 25, DNS 53, MySQL 3306, SQL Server 1433, PostgreSQL 5432.
+
+14. **Firewall, VPN, proxy, load balancer?** Firewall — filters traffic by rules. VPN — encrypted tunnel over the public internet. Proxy — intermediary for requests. Load balancer — spreads traffic across servers (round robin, least connections).
+
+---
+
+## 15. Cloud Computing Basics
+
+QualiZeal trains interns in Cloud. Basic awareness + curiosity is enough; a free-tier hands-on (deploying a small API) is a big bonus to mention.
+
+1. **What is cloud computing?** On-demand delivery of computing resources (servers, storage, databases, networking, AI) over the internet with **pay-as-you-go** pricing, instead of buying and maintaining your own data centre.
+
+2. **Benefits?** No upfront hardware cost, **scalability/elasticity** (scale up or down automatically), high availability across regions, global reach, managed services, faster time to market.
+
+3. **Service models — IaaS, PaaS, SaaS (most common cloud question)**
+   - **IaaS:**
+      - *You manage:* OS, runtime, app, data
+      - *Provider manages:* Hardware, virtualization, network
+      - *Examples:* AWS EC2, Azure Virtual Machines, Google Compute Engine
+   - **PaaS:**
+      - *You manage:* Your app & data
+      - *Provider manages:* OS, runtime, scaling
+      - *Examples:* Azure App Service, AWS Elastic Beanstalk, Google App Engine
+   - **SaaS:**
+      - *You manage:* Just use it
+      - *Provider manages:* Everything
+      - *Examples:* Gmail, Microsoft 365, Salesforce, Zoom
+   - **FaaS / Serverless:**
+      - *You manage:* Only function code
+      - *Provider manages:* Servers, scaling (pay per execution)
+      - *Examples:* AWS Lambda, Azure Functions
+
+   Pizza analogy: IaaS = buy ingredients & bake at home in a rented kitchen; PaaS = takeaway pizza you serve; SaaS = dine at the restaurant.
+
+4. **Deployment models?** **Public** (shared provider infrastructure), **Private** (dedicated to one organisation), **Hybrid** (mix of on-premises/private + public), **Multi-cloud** (multiple providers).
+
+5. **Major providers & equivalent services**
+   - **Virtual machines:** AWS: EC2 · Azure: Virtual Machines · GCP: Compute Engine
+   - **Object storage:** AWS: S3 · Azure: Blob Storage · GCP: Cloud Storage
+   - **Managed SQL:** AWS: RDS · Azure: Azure SQL Database · GCP: Cloud SQL
+   - **NoSQL:** AWS: DynamoDB · Azure: Cosmos DB · GCP: Firestore/Bigtable
+   - **Serverless:** AWS: Lambda · Azure: Functions · GCP: Cloud Functions/Run
+   - **Kubernetes:** AWS: EKS · Azure: AKS · GCP: GKE
+   - **Identity:** AWS: IAM · Azure: Entra ID (formerly Azure AD) · GCP: Cloud IAM
+   - **AI services:** AWS: Bedrock, SageMaker · Azure: Azure OpenAI / AI Foundry · GCP: Vertex AI
+
+   *(For a .NET-focused company, **Azure** knowledge is especially relevant.)*
+
+6. **Region vs Availability Zone?** Region = geographic area (e.g., Mumbai). Availability Zone = isolated data centre(s) within a region; deploying across AZs gives fault tolerance.
+
+7. **Scaling — vertical vs horizontal?** Vertical (scale up) = bigger machine. Horizontal (scale out) = more machines behind a load balancer (preferred in cloud; **auto-scaling**).
+
+8. **Virtualization vs Containers vs Kubernetes?**
+   - **VM** — full OS per virtual machine (heavier, minutes to boot).
+   - **Container (Docker)** — packages app + dependencies, shares the host OS kernel (lightweight, seconds to start, "works on my machine" problem solved).
+   - **Kubernetes** — orchestrates containers: deployment, scaling, self-healing, load balancing.
+   ```dockerfile
+   # Example Dockerfile for a .NET 8 API
+   FROM mcr.microsoft.com/dotnet/aspnet:8.0
+   WORKDIR /app
+   COPY ./publish .
+   ENTRYPOINT ["dotnet", "MyApi.dll"]
+   ```
+
+9. **What is DevOps / CI/CD?** DevOps = culture + practices that join development and operations for faster, reliable delivery. **CI** (Continuous Integration) — every commit is built and tested automatically. **CD** (Continuous Delivery/Deployment) — automatically release to staging/production. Tools: GitHub Actions, Azure DevOps, Jenkins, GitLab CI. In a QE company, **automated tests run inside the CI/CD pipeline** — that's "shift-left" testing.
+
+10. **Shared responsibility model?** Provider secures the cloud *infrastructure*; the customer secures *what they put in it* (data, access permissions, configurations).
+
+11. **Cloud security basics?** IAM with **least privilege**, MFA, encryption at rest and in transit, secret managers (Key Vault/Secrets Manager), network security groups, monitoring/logging.
+
+12. **CapEx vs OpEx?** Cloud converts capital expenditure (buying servers) into operational expenditure (monthly usage bills).
+
+---
+
+## 16. AI / ML / Generative AI Basics
+
+QualiZeal calls itself "AI-native" and trains interns in AI. Expect a few awareness questions. Speak simply, give examples, and connect AI to **software testing**.
+
+1. **AI vs ML vs Deep Learning vs Generative AI?**
+   - **AI** — machines performing tasks that need human-like intelligence (broadest).
+   - **Machine Learning** — subset of AI; systems **learn patterns from data** instead of explicit rules.
+   - **Deep Learning** — subset of ML using multi-layer **neural networks** (images, speech, language).
+   - **Generative AI** — models that **create new content** (text, code, images): ChatGPT, Claude, Gemini, Copilot.
+
+2. **Types of machine learning?**
+   - **Supervised:**
+      - *Data:* Labelled (input → known output)
+      - *Example:* Spam detection, house-price prediction. *Classification* (category) vs *Regression* (number)
+   - **Unsupervised:**
+      - *Data:* Unlabelled
+      - *Example:* Customer segmentation (clustering — K-Means)
+   - **Reinforcement:**
+      - *Data:* Rewards/penalties from an environment
+      - *Example:* Game-playing agents, robotics
+
+3. **Common algorithms (names + one line)?** Linear regression (predict numbers), Logistic regression (yes/no classification), Decision tree / Random forest, KNN, SVM, K-Means clustering, Naive Bayes, Neural networks.
+
+4. **Training vs testing data; overfitting vs underfitting?**
+   Split data (e.g., 80/20) to check generalisation. **Overfitting** — memorises training data, fails on new data (fix: more data, regularisation, simpler model, cross-validation). **Underfitting** — too simple, poor even on training data.
+
+5. **Evaluation metrics?** Accuracy, **Precision** (of the predicted positives, how many are right), **Recall** (of actual positives, how many we found), F1-score, confusion matrix. *Example:* in fraud detection, recall matters (don't miss fraud).
+
+6. **What is an LLM?** A **Large Language Model** — a deep-learning model (based on the **Transformer** architecture) trained on huge text data to predict the next token; can answer questions, summarise, write code. Examples: GPT (OpenAI), Claude (Anthropic), Gemini (Google), Llama (Meta).
+
+7. **Key GenAI terms**
+   - **Prompt / prompt engineering** — crafting clear instructions, context and examples to get better output.
+   - **Token** — a chunk of text the model processes; **context window** = how many tokens it can consider at once.
+   - **Hallucination** — confident but wrong output → always verify.
+   - **RAG (Retrieval-Augmented Generation)** — fetch relevant documents (often from a **vector database** using **embeddings**) and give them to the LLM so it answers from your data.
+   - **Fine-tuning** — further training a model on specific data.
+   - **AI agents** — LLMs that can plan and use tools (call APIs, run code, browse) to finish multi-step tasks.
+   - **Embeddings** — numeric vectors that capture meaning; similar text → nearby vectors.
+
+8. **How is AI used in software testing / Quality Engineering? (connect to QualiZeal!)**
+   - **Test case generation** from requirements/user stories using LLMs.
+   - **Self-healing test automation** — when a UI element's locator changes, AI finds the element anyway.
+   - **Test data generation** (synthetic, privacy-safe data).
+   - **Defect prediction** — ML predicts risky modules to test first (risk-based testing).
+   - **Visual testing** — AI compares screenshots for UI regressions.
+   - **Log analysis & root-cause suggestions**, flaky-test detection.
+   - **Testing AI systems themselves** — checking LLM apps for accuracy, bias, hallucination, safety, prompt injection.
+   QualiZeal's **QMentisAI™** is a GenAI-powered platform for AI-driven testing — mentioning it shows research.
+
+9. **Have you used AI tools? How do you use them responsibly?** Example answer: *"I use ChatGPT/Claude/Copilot to understand concepts, generate boilerplate and test ideas, but I always read and test the code myself, never paste confidential data, and treat the output as a suggestion, not the truth."*
+
+10. **Ethical issues in AI?** Bias in training data, privacy, transparency/explainability, job impact, misinformation/deepfakes, security (prompt injection). Responsible AI = fairness, accountability, transparency, privacy, safety.
+
+11. **Python for AI?** Libraries: NumPy, Pandas (data), Matplotlib (plots), scikit-learn (classic ML), TensorFlow/PyTorch (deep learning). .NET has **ML.NET** and **Semantic Kernel** (for LLM apps); Java has Spring AI / LangChain4j.
+
+---
+
+## 17. Software Testing & Quality Engineering
+
+**QualiZeal is a Quality Engineering company — testing questions are very likely even in a developer interview.** Many freshers skip this; knowing it sets you apart.
+
+1. **What is software testing? Why is it needed?** Evaluating software to find defects and verify it meets requirements. Needed because bugs cost money, reputation and safety; the later a bug is found, the costlier it is to fix.
+
+2. **Quality Assurance vs Quality Control vs Testing vs Quality Engineering?**
+   - **QA** — *process-oriented*, prevents defects (standards, reviews).
+   - **QC** — *product-oriented*, finds defects in the product.
+   - **Testing** — an activity within QC.
+   - **Quality Engineering (QE)** — the modern approach: quality built in across the whole lifecycle — automation, CI/CD, performance, security, AI — owned by the whole team, not just at the end. ← *QualiZeal's business.*
+
+3. **Verification vs Validation?** Verification — "Are we building the product **right**?" (reviews, walkthroughs — static). Validation — "Are we building the **right product**?" (executing tests — dynamic).
+
+4. **Error vs Defect/Bug vs Failure?** Error — human mistake in code. Defect/Bug — the flaw in the software. Failure — the system deviating from expected behaviour at runtime.
+
+5. **STLC (Software Testing Life Cycle)?** Requirement analysis → Test planning → Test case design → Test environment setup → Test execution → Test closure.
+
+6. **Bug life cycle?** New → Assigned → Open → Fixed → Retest → **Verified → Closed**; or Reopened if still failing. Other states: Rejected, Duplicate, Deferred, Not a bug.
+
+7. **Severity vs Priority (classic)**
+   - **Severity** — impact on the system (set by tester). **Priority** — how soon to fix (set by product/manager).
+   - **High severity, low priority:** app crashes on a rarely used legacy report page.
+   - **Low severity, high priority:** company name/logo misspelled on the home page.
+   - **High–High:** payment fails for all users. **Low–Low:** spelling mistake in a help page.
+
+8. **Levels of testing?** **Unit** (single function/class, by developers) → **Integration** (modules together) → **System** (whole app vs requirements) → **Acceptance/UAT** (by client/users; alpha & beta).
+
+9. **Types of testing**
+   - **Functional:** smoke, sanity, regression, integration, UAT.
+   - **Non-functional:** performance (load, stress, spike, endurance), security, usability, **accessibility**, compatibility, reliability.
+   - **Smoke vs Sanity:** Smoke — broad, shallow check that the build's critical features work ("is it stable enough to test?"). Sanity — narrow, focused check that a specific fix/feature works.
+   - **Regression testing** — re-run tests after changes to ensure nothing else broke (ideal for automation).
+   - **Retesting** — re-run the failed test to confirm a specific bug is fixed.
+
+10. **Black-box vs White-box vs Grey-box?** Black-box — test via inputs/outputs without seeing code. White-box — based on code structure (statement/branch coverage). Grey-box — partial knowledge.
+
+11. **Test design techniques**
+    - **Equivalence partitioning** — divide inputs into classes; test one from each. *Age field 18–60:* classes <18, 18–60, >60.
+    - **Boundary Value Analysis** — test at edges: 17, 18, 19, 59, 60, 61.
+    - **Decision table** — combinations of conditions (e.g., login: valid/invalid user × valid/invalid password).
+    - **State transition** — e.g., ATM card blocked after 3 wrong PINs.
+    - **Error guessing** — experience-based (empty input, special characters, very long strings).
+
+12. **Write test cases for a login page (very common!)**
+    1. Valid username + valid password → *Expected:* Redirect to dashboard
+    2. Valid username + wrong password → *Expected:* Error "Invalid credentials" (don't reveal which one is wrong)
+    3. Unregistered username → *Expected:* Same generic error
+    4. Both fields empty → *Expected:* Validation messages
+    5. Password field masking → *Expected:* Characters shown as dots
+    6. 3–5 wrong attempts → *Expected:* Account locked / CAPTCHA
+    7. SQL injection `' OR '1'='1` in username → *Expected:* Rejected safely
+    8. Leading/trailing spaces, case sensitivity → *Expected:* As per requirement
+    9. "Forgot password" link → *Expected:* Reset flow works
+    10. Session after logout + browser back button → *Expected:* Must not access dashboard
+    11. Enter key submits the form; Tab order works → *Expected:* Usability/accessibility
+    12. Response time under load → *Expected:* Within SLA (e.g., < 2 s)
+
+    Also be ready for: test cases for a **pen, lift/elevator, ATM, Amazon cart, a water bottle** — think functional, boundary, negative, usability, performance, security.
+
+13. **Manual vs Automation testing — when to automate?** Automate repetitive, stable, high-value tests (regression, smoke, data-driven, cross-browser, API). Keep manual for exploratory, usability, ad-hoc, and features that change frequently.
+
+14. **Automation tools you should know by name**
+    - **Web UI:** **Selenium WebDriver**, **Playwright**, Cypress
+    - **Mobile:** Appium
+    - **API:** Postman, RestAssured (Java), Karate
+    - **Unit testing:** JUnit/TestNG (Java), **xUnit/NUnit/MSTest** (C#), Mockito/Moq (mocking)
+    - **BDD:** **Cucumber** (Java), Reqnroll/SpecFlow (.NET) — Gherkin *Given/When/Then*
+    - **Performance:** JMeter, k6, Gatling, LoadRunner
+    - **Test management / bugs:** Jira, TestRail, Azure DevOps
+    - **CI/CD:** Jenkins, GitHub Actions, Azure DevOps
+
+15. **Selenium basics**
+    - Components: WebDriver, IDE, Grid (parallel/remote execution).
+    - **Locators:** id, name, className, tagName, linkText, partialLinkText, **CSS selector**, **XPath** (absolute `/html/body/...` — fragile; relative `//input[@id='email']` — preferred).
+    - **Waits:** implicit (global), **explicit** (`WebDriverWait` until a condition — preferred), fluent. Avoid `Thread.sleep`.
+    - `findElement` (throws `NoSuchElementException`) vs `findElements` (returns an empty list).
+    - **Page Object Model (POM)** — one class per page with its locators and actions → reusable, maintainable tests.
+    ```java
+    // Java + Selenium + JUnit 5 example
+    WebDriver driver = new ChromeDriver();
+    driver.get("https://example.com/login");
+    driver.findElement(By.id("username")).sendKeys("asha");
+    driver.findElement(By.id("password")).sendKeys("secret");
+    driver.findElement(By.cssSelector("button[type='submit']")).click();
+    new WebDriverWait(driver, Duration.ofSeconds(10))
+        .until(ExpectedConditions.urlContains("/dashboard"));
+    assertTrue(driver.getCurrentUrl().contains("/dashboard"));
+    driver.quit();
+    ```
+
+16. **Unit testing example (shows you write quality code as a developer)**
+    ```csharp
+    // xUnit (C#) — Arrange, Act, Assert
+    public class CalculatorTests
+    {
+        [Fact]
+        public void Add_TwoNumbers_ReturnsSum()
+        {
+            var calc = new Calculator();        // Arrange
+            int result = calc.Add(2, 3);        // Act
+            Assert.Equal(5, result);            // Assert
+        }
+
+        [Theory]
+        [InlineData(0, 0, 0)]
+        [InlineData(-1, 1, 0)]
+        public void Add_Various(int a, int b, int expected) =>
+            Assert.Equal(expected, new Calculator().Add(a, b));
+    }
+    ```
+    ```java
+    // JUnit 5 (Java)
+    @Test
+    void add_twoNumbers_returnsSum() {
+        assertEquals(5, new Calculator().add(2, 3));
+    }
+    ```
+    Terms: **mocking** (fake dependencies), **code coverage**, **TDD** (write a failing test → make it pass → refactor: *Red-Green-Refactor*).
+
+17. **What is a test plan / test case / test scenario?** Test plan — document: scope, approach, resources, schedule, entry/exit criteria, risks. Test scenario — *what* to test (high level: "verify login"). Test case — detailed steps, data, expected result.
+
+18. **Shift-left vs shift-right testing?** Shift-left — test earlier (unit tests, code reviews, testing in CI). Shift-right — test/monitor in production (A/B testing, canary releases, observability).
+
+19. **Performance testing types?** **Load** (expected users), **Stress** (beyond limits to find breaking point), **Spike** (sudden surge), **Endurance/Soak** (long duration — memory leaks), **Scalability**.
+
+20. **Accessibility testing?** Ensuring people with disabilities can use the app (screen readers, keyboard navigation, colour contrast, alt text) — standard: **WCAG**. QualiZeal lists accessibility testing as a service.
+
+21. **Why should a developer care about testing?** Bugs found early are cheap to fix; tests act as a safety net for refactoring; clean, testable code (DI, small methods) is better code. *Great line for the interview:* "In a quality-engineering company, I'd like to be a developer who thinks like a tester."
+
+---
+
+## 18. SDLC, Agile, Git
+
+1. **SDLC phases?** Requirement gathering & analysis → Design → Implementation (coding) → Testing → Deployment → Maintenance.
+
+2. **SDLC models?**
+   - **Waterfall** — sequential; good for fixed, clear requirements; late feedback.
+   - **V-Model** — each development phase has a matching testing phase (verification ↔ validation).
+   - **Iterative / Spiral** — repeated cycles; spiral emphasises risk analysis.
+   - **Agile** — short iterations, continuous feedback, working software early. Most companies (including QE firms) work Agile.
+
+3. **Agile Manifesto values?** Individuals & interactions over processes & tools; working software over comprehensive documentation; customer collaboration over contract negotiation; responding to change over following a plan.
+
+4. **Scrum?**
+   - **Roles:** Product Owner (owns backlog/priorities), Scrum Master (facilitator, removes blockers), Developers (cross-functional team).
+   - **Events:** Sprint (1–4 weeks), Sprint Planning, **Daily Stand-up** (what I did yesterday / will do today / blockers), Sprint Review (demo), Sprint Retrospective (improve the process).
+   - **Artifacts:** Product Backlog, Sprint Backlog, Increment. **User story** format: *"As a [user], I want [goal] so that [benefit]"* + acceptance criteria. Estimation in **story points**. Kanban = continuous flow with WIP limits.
+
+5. **Git basics (very likely: "Have you used Git? What commands?")**
+   - **`git init` / `git clone <url>`:** Create / copy a repository
+   - **`git status`:** See changes
+   - **`git add .`:** Stage changes
+   - **`git commit -m "msg"`:** Save a snapshot locally
+   - **`git push` / `git pull`:** Upload / download + merge
+   - **`git fetch`:** Download without merging
+   - **`git branch feature-x` / `git checkout -b feature-x` / `git switch`:** Create / switch branches
+   - **`git merge feature-x`:** Merge branch
+   - **`git log --oneline`:** History
+   - **`git stash`:** Temporarily save uncommitted work
+   - **`git reset` / `git revert`:** Undo (reset rewrites history locally; **revert** creates a new undo commit — safe for shared branches)
+
+6. **Git vs GitHub?** Git = distributed version-control tool. GitHub/GitLab/Azure Repos = hosting platforms with pull requests, code review, CI.
+
+7. **`git pull` vs `git fetch`?** Fetch downloads changes only; pull = fetch + merge.
+
+8. **Merge vs Rebase?** Merge keeps both histories with a merge commit; rebase replays your commits on top of another branch for a linear history (never rebase shared public branches).
+
+9. **What is a merge conflict and how do you resolve it?** Two branches changed the same lines. Open the file, pick/combine changes between `<<<<<<<`, `=======`, `>>>>>>>` markers, then `git add` and commit.
+
+10. **What is a Pull Request?** A request to merge your branch into main, where teammates review code and CI runs tests before merging.
+
+---
+
+## 19. Project & Resume Questions
+
+In fresher interviews, **the project discussion often decides the result**. Every line on your resume is a possible question.
+
+### Prepare a 2-minute project pitch (STAR-like structure)
+1. **Problem** — what real problem does it solve and for whom?
+2. **Solution & features** — 3–4 key features.
+3. **Tech stack & why** — e.g., "ASP.NET Core Web API + SQL Server + React, because…".
+4. **Architecture** — frontend → API → database; draw it on paper if asked.
+5. **Your role** — what *you* personally built (be honest in team projects).
+6. **Challenge & how you solved it** — one specific technical problem.
+7. **Result / learning** — what works, what you'd improve.
+
+### Questions you must be ready for
+- Explain your project in 2 minutes. *(Practise aloud with a timer.)*
+- Why did you choose this technology over alternatives?
+- Draw the database schema — what tables, keys and relationships?
+- How does login/authentication work in your project? Where are passwords stored? *(Answer: hashed with a salt — bcrypt/PBKDF2 — never plain text.)*
+- Show one API endpoint — request, response, status codes.
+- What was the hardest bug you faced? How did you debug it?
+- How did you test it? *(Mention unit tests, Postman, manual test cases — very relevant for QualiZeal.)*
+- If you had more time / 10,000 users, what would you change? *(Indexes, caching, pagination, async, cloud deployment, load balancing.)*
+- What did you learn from the project?
+- Is it on GitHub/deployed? *(Have the link ready.)*
+
+### Resume tips for this drive
+- Highlight **OOP, Java or C#/.NET, SQL, REST APIs, Git**, and any **Cloud/AI** exposure (even certifications like **AZ-900 Azure Fundamentals**, **AWS Cloud Practitioner**, or online AI courses).
+- Only list skills you can answer 5 questions on.
+- Quantify: "Reduced page load from 4 s to 1.5 s by adding DB indexes and pagination."
+
+---
+
+## 20. Group Discussion
+
+### How you're evaluated
+Content & knowledge · Communication clarity · Listening & building on others · Logical structure · Leadership (initiating, summarising, bringing others in) · Body language · Team behaviour.
+
+### Do's and Don'ts
+- **Do:**
+   - Open if you have a clear structure ("Let's look at this from 3 angles…")
+   - Use facts, examples, data
+   - Build on others: "Adding to what Rahul said…"
+   - Disagree politely: "I see your point, however…"
+   - Invite quiet members
+   - Summarise at the end (balanced, both sides)
+   - Maintain eye contact with the group, not the panel
+- **Don't:**
+   - Start if you have nothing solid to say
+   - Make up statistics
+   - Interrupt or shout
+   - Attack people personally
+   - Dominate the whole time
+   - Introduce new points in the summary
+   - Look only at the evaluators
+
+**Useful phrases:** "I'd like to begin by defining…" · "Building on that point…" · "Let's also consider the other side…" · "To bring us back to the topic…" · "To summarise, the group felt that…"
+
+### Topics with talking points (likely for an IT drive in 2026)
+
+**1. Will AI replace software engineers / IT jobs?**
+- *For:* AI tools (Copilot, Claude, ChatGPT) already generate code, tests and documentation; routine coding and manual testing jobs are shrinking; companies hire fewer freshers for repetitive work.
+- *Against:* AI **augments**, not replaces — it still needs humans for problem definition, architecture, validation, security and accountability; it hallucinates; new roles appear (AI engineer, prompt/QE for AI systems, MLOps).
+- *Balanced conclusion:* "AI won't replace engineers, but engineers who use AI will replace those who don't." Upskilling is essential.
+
+**2. Work from home vs work from office**
+- WFH: flexibility, no commute, wider talent pool, cost savings. Office: collaboration, mentoring for freshers, culture, focus for some, security.
+- Conclusion: hybrid works for experienced staff; **freshers benefit greatly from in-office learning** (relevant — this internship is office-based!).
+
+**3. AI in software testing — boon or bane?** Boon: faster test generation, self-healing scripts, better coverage. Risks: over-reliance, false confidence, AI-generated tests that miss business logic, data privacy. Needs human judgment.
+
+**4. Is a degree necessary for a career in IT?** Skills and projects matter more today; but degrees give fundamentals, structured thinking and are still a filter for hiring.
+
+**5. Cloud computing: is on-premise dead?** Cloud = scalability, pay-per-use; on-premise still used for strict data laws, latency, cost at massive steady scale → hybrid is common.
+
+**6. Social media: boon or bane?** Connectivity, business, awareness vs misinformation, mental health, privacy, addiction.
+
+**7. Data privacy vs convenience** — India's **DPDP Act 2023**; personalised services need data; consent and transparency matter.
+
+**8. Should AI be regulated?** Need for safety, bias control, deepfake prevention vs risk of slowing innovation; EU AI Act as an example of regulation.
+
+**9. Startups vs MNCs for freshers?** Startups: broad learning, ownership, risk. MNCs: structured training, stability, process.
+
+**10. Digital India / UPI — impact on the economy**, **Electric vehicles in India**, **Cybersecurity threats in a digital world**, **Online vs offline education**, **4-day work week**.
+
+**Abstract topics** sometimes appear ("Zero", "Red", "The sky is the limit") — interpret creatively from multiple angles (e.g., "Zero" → invention of zero in India, zero-defect quality, zero-trust security, starting from zero as a fresher).
+
+---
+
+## 21. HR Interview
+
+Answer honestly, positively, and briefly (60–90 seconds). Use the **STAR** method for behavioural questions: **S**ituation, **T**ask, **A**ction, **R**esult.
+
+1. **Tell me about yourself.**
+   *Structure:* Present (degree, college, CGPA) → Skills (language, SQL, APIs) → 1 project highlight → 1 achievement/extra-curricular → why this role.
+   *Sample:* "I'm Asha, a final-year B.Tech Computer Science student at RGUKT Nuzvid with a CGPA of 8.6. My strongest language is C#, and I'm comfortable with OOP, SQL and building REST APIs with ASP.NET Core. My main project is a hostel complaint-management system — a .NET Web API with SQL Server and a simple React front end — where I designed the database and wrote the APIs and unit tests. I also enjoy problem-solving; I've solved around 200 problems on LeetCode. I'm excited about this internship because it offers structured training in .NET, Cloud and AI, which is exactly the direction I want my career to take."
+   *(Replace with your real details — never memorise word for word.)*
+
+2. **What do you know about QualiZeal? / Why QualiZeal?**
+   "QualiZeal is an AI-native digital quality engineering company headquartered in Dallas, with three capability centers here in Hyderabad. It helps global enterprises with test automation, performance, mobile and accessibility testing and digital engineering, and it has built QMentisAI for GenAI-driven testing. I'm attracted by three things: the structured one-year training in .NET/Java, Cloud and AI; the chance to work on global client projects early; and the company's focus on quality — I want to be a developer who builds reliable software, and learning in a quality-first company is the best place for that."
+
+3. **Why should we hire you?**
+   Match the INF: "You're looking for strong fundamentals, problem-solving, communication and a willingness to learn. I have solid OOP/SQL basics shown by my projects, I learn quickly — for example I learnt ASP.NET Core on my own in four weeks for my project — and I'm committed to growing with the company long-term."
+
+4. **Are you comfortable with the 2-year bond?** *Expected for this drive.*
+   "Yes, absolutely. A year of structured training is a big investment by the company, so a commitment is fair. I'm looking for a place to learn and grow for the long term, not a short stop, so the bond aligns with my own plans."
+
+5. **The stipend is ₹15,000/month during the internship — is that okay?**
+   "Yes. At this stage my priority is learning and getting real project experience. The structured training and the PPO opportunity matter more to me than the stipend."
+
+6. **Are you willing to relocate to Hyderabad and work from the office?**
+   "Yes. In fact, as a fresher, working from the office with mentors and teammates will help me learn much faster."
+
+7. **Can you manage your final-year academics along with the internship (Sep '26 – Sep '27)?**
+   "Yes. I'll plan my time, keep my professors informed, and use weekends for academic work. I understand the internship is a priority and I'm committed to both." *(Clarify with your placement cell how the college handles this before the interview.)*
+
+8. **What are your strengths?** Pick 2–3 relevant ones with **proof**: "quick learner (learnt X in Y weeks)", "persistent problem-solver (debugged … )", "team player (coordinated a 4-person project)".
+
+9. **What is your weakness?** A real but non-critical one + what you're doing about it:
+   "I used to hesitate to speak in large groups. I've been working on it by presenting in class seminars and joining our coding club's sessions, and I'm now much more comfortable."
+   *(Avoid clichés like "I'm a perfectionist" and anything core to the job, e.g., "I don't like coding".)*
+
+10. **Where do you see yourself in 5 years?**
+    "I see myself as a strong full-stack/backend engineer with deep expertise in .NET (or Java) and cloud, contributing to AI-enabled quality engineering solutions, and mentoring new interns like I'll be mentored here — growing within QualiZeal."
+
+11. **Tell me about a challenge/failure you faced.** (STAR) — pick a project bug, a missed deadline, a failed exam or competition; focus on **what you learned and changed**.
+
+12. **Describe a conflict in a team and how you handled it.** Show listening, a fair solution, focus on the goal, no blame.
+
+13. **Do you prefer working alone or in a team?** "Both — I can focus independently on my tasks, but I enjoy teamwork because reviews and discussion make the result better."
+
+14. **How do you handle pressure / tight deadlines?** Break work down, prioritise, communicate early if there's risk, stay calm — with a real example.
+
+15. **Are you ready to work in any technology (e.g., testing instead of development)?**
+    "Yes. I want to build strong fundamentals, and testing/automation is a core skill in a QE company — it would make me a better engineer. I'm open to wherever the company needs me." *(Very likely question at a QE company — answer positively.)*
+
+16. **Do you have other offers? / Are you applying elsewhere?** Be honest but show priority: "I'm attending other drives as part of campus placement, but QualiZeal is a strong preference because of the training program in .NET, Cloud and AI."
+
+17. **What do you do in your free time / hobbies?** Have 1–2 genuine ones and be ready for follow-up questions.
+
+18. **What did you learn from the GD/technical round today?** Shows reflection: mention something specific.
+
+19. **How do you keep up with new technologies?** Official docs (Microsoft Learn, Oracle docs), YouTube channels, tech blogs, building small projects, LeetCode, following releases (e.g., .NET 10 LTS, Java 25 LTS).
+
+20. **Do you have any questions for us?** Always ask 1–2. Examples: "What will the first three months of training look like?" · "Which technologies do interns usually work on after training?" · "What qualities have helped past interns convert to full-time roles?"
+
+### HR body-language checklist
+Formal clothes, resume copies, ID, pen · Arrive 30 min early · Greet, sit when offered · Eye contact, smile, no fidgeting · Say "I don't know, but I'd like to learn" instead of guessing · Thank the panel at the end.
+
+---
+
+## 22. Last-Night Revision Cheat Sheet
+
+**Company:** QualiZeal — AI-native Digital Quality Engineering, HQ Dallas, 3 capability centers in Hyderabad, QMentisAI, co-CEOs Pradeep Govindasamy & Kalyana Rao Konda. Intern Sep '26–Sep '27, ₹15K/month, PPO ₹6.5 LPA (5.5 fixed + 1.0 retention), 2-year bond, Hyderabad office.
+
+**OOP:** Encapsulation (private + methods) · Abstraction (abstract class/interface) · Inheritance (IS-A; no multiple class inheritance — diamond problem) · Polymorphism (overloading = compile time, overriding = runtime) · SOLID.
+
+**Java:** JDK ⊃ JRE ⊃ JVM · String immutable, pool, `==` vs `equals` · StringBuilder (fast) vs StringBuffer (sync) · HashMap: hashCode → bucket → equals, load factor 0.75, treeify at 8 · checked vs unchecked · finally always runs · Streams: filter/map/collect.
+
+**C#/.NET:** CLR/IL/JIT · value vs reference types · struct vs class vs record · `==` on strings compares value · ref/out · virtual/override/new · LINQ + deferred execution · IEnumerable (memory) vs IQueryable (DB) · async/await · DI lifetimes Transient/Scoped/Singleton · middleware order · EF Core · .NET 8 & .NET 10 are LTS.
+
+**DSA:** Binary search O(log n) · Merge sort O(n log n) stable · Quick sort worst O(n²) · HashMap O(1) · Inorder of BST = sorted · Stack LIFO / Queue FIFO · Kadane, two-sum with HashMap, reverse linked list, slow/fast pointers.
+
+**DBMS/SQL:** ACID · 1NF atomic / 2NF no partial / 3NF no transitive · PK vs Unique (NULL) · clustered (1) vs non-clustered (many) · DELETE vs TRUNCATE vs DROP · WHERE vs HAVING · Execution order FROM→WHERE→GROUP BY→HAVING→SELECT→ORDER BY · 2nd highest salary · DENSE_RANK · self join manager query.
+
+**APIs:** REST = stateless, resources + verbs · GET/POST/PUT/PATCH/DELETE · idempotent: GET, PUT, DELETE · 200/201/204/400/401/403/404/500 · 401 = who are you? 403 = not allowed · JWT, CORS, HTTPS.
+
+**OS/CN:** Deadlock 4 conditions · process vs thread · paging/virtual memory · OSI 7 layers · TCP vs UDP · DNS · HTTP 80 / HTTPS 443.
+
+**Cloud:** IaaS (VMs) / PaaS (App Service) / SaaS (Gmail) / Serverless (Functions, Lambda) · public/private/hybrid · Docker vs VM · Kubernetes · CI/CD.
+
+**AI:** AI ⊃ ML ⊃ DL; GenAI · supervised/unsupervised/reinforcement · overfitting · LLM, tokens, hallucination, RAG, embeddings, agents · AI in testing: test generation, self-healing, defect prediction.
+
+**Testing:** Verification vs Validation · Severity vs Priority (logo misspelt = low sev, high priority) · Smoke vs Sanity · Regression vs Retesting · BVA & equivalence partitioning · Bug life cycle · Selenium locators/waits/POM · unit test AAA · shift-left.
+
+**HR must-say-yes:** yes to the bond, the stipend, the Hyderabad office, and being open to any technology (including testing).
+
+---
+
+## 23. Sources & Practice Links
+
+**Company research used in this guide**
+- [QualiZeal on Glassdoor (overview, interview difficulty 2.6/5, 67% positive)](https://www.glassdoor.co.in/Overview/Working-at-QualiZeal-EI_IE6555208.11,20.htm)
+- [QualiZeal on LinkedIn](https://www.linkedin.com/company/qualizeal)
+- [HYSEA — QualiZeal member profile (services, scale)](https://hysea.in/qualizeal/)
+- [CRN India — QualiZeal enters India, opens GDC in Hyderabad](https://www.crn.in/?p=51100)
+- [CXOToday — QualiZeal's 3rd capability center in Hyderabad](https://cxotoday.com/media-coverage/qualizeal-unveils-its-3rd-state-of-the-art-capability-center-in-hyderabad-to-drive-ai-innovation-and-quality-engineering-excellence/)
+- [BusinessWire — Kalyana Rao Konda appointed Executive Director & CEO](https://www.businesswire.com/news/home/20240515072582/en/QualiZeal-Strengthens-Leadership-Team-with-Appointment-of-Kalyana-Rao-Konda-as-Executive-Director-CEO)
+- [Great Place to Work — QualiZeal India](https://www.greatplacetowork.in/great/company/qualizeal-india-llp)
+
+**Question banks used / recommended for more practice**
+- Aptitude: [IndiaBix](https://www.indiabix.com), [PrepInsta](https://prepinsta.com), [placementpreparation.io mock tests](https://www.placementpreparation.io/blog/?p=21314)
+- Java: [GeeksforGeeks Java Interview Questions](https://www.geeksforgeeks.org/java/java-interview-questions/), [InterviewBit Java](https://www.interviewbit.com/java-interview-questions/)
+- .NET: [Hyring — Top 60 .NET Interview Questions (2026)](https://hyring.com/jobseeker-toolkit/interview-questions/technical/dot-net), [codewithmukesh — ASP.NET Core interview questions](https://codewithmukesh.com/blog/aspnet-core-interview-questions/), [Microsoft Learn — C# & .NET](https://learn.microsoft.com/dotnet/)
+- SQL: [Guru99 SQL Interview Questions](https://www.guru99.com/sql-interview-questions-answers.html), [Simplilearn SQL Q&A](https://www.simplilearn.com/top-sql-interview-questions-and-answers-article), LeetCode "SQL 50"
+- Testing: [Testsigma — QA Interview Questions 2026](https://testsigma.com/blog/qa-interview-questions/)
+- Coding: LeetCode (Easy: Two Sum, Valid Parentheses, Reverse Linked List, Best Time to Buy and Sell Stock, Maximum Subarray, Valid Anagram, Merge Sorted Array), HackerRank 30 Days of Code
+- Trainee interview patterns: [Glassdoor — trainee software engineer interview questions](https://www.glassdoor.com/Interview/trainee-software-engineer-interview-questions-SRCH_KO0,25.htm)
+
+**Note on sources:** QualiZeal-specific candidate reports on Glassdoor and AmbitionBox are behind a login, so this guide couldn't quote actual past QualiZeal questions. The technical questions here follow the INF's required skills (OOP, APIs, databases, .NET/Java, Cloud, AI) and common fresher patterns. Ask seniors from your college who attended earlier QualiZeal drives about the latest test pattern.
+
+**All the best! Fundamentals + clear communication + positive attitude = selection.**
+</script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // ---------- storage (safe) ----------
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+
+  // ---------- parse the guide into topics ----------
+  const raw = document.getElementById("guide-md").textContent;
+  const lines = raw.split("\n");
+  const preamble = [];
+  const topics = [];
+  let cur = null, skipping = false;
+  for (const line of lines) {
+    const m = line.match(/^## (\d+)\.\s+(.*)$/);
+    if (m) { cur = { num: +m[1], title: m[2].trim(), lines: [] }; topics.push(cur); skipping = false; continue; }
+    if (/^## /.test(line)) { skipping = true; cur = null; continue; }   // e.g. "Table of Contents"
+    if (skipping) continue;
+    if (cur) cur.lines.push(line); else preamble.push(line);
+  }
+  topics.forEach(t => {
+    t.md = t.lines.join("\n").replace(/(\n\s*---\s*)+\s*$/, "").trim();
+    t.lower = t.md.toLowerCase();
+    t.questions = (t.md.match(/^\d+\. \*/gm) || []).length + (t.md.match(/^\*\*Q\d+\.\*\*/gm) || []).length;
+    t.subs = (t.md.match(/^### /gm) || []).length;
+  });
+  const siteTitle = "Interview Study Guide";
+
+  // Normalise every question format into "N. question" + blank line + indented answer,
+  // so each question renders as its own paragraph and the answer can be hidden in self-test mode.
+  function splitQA(md) {
+    const L = md.split("\n"), out = [];
+    let bulletNo = 0, inFence = false;
+    const nextIndented = i => i + 1 < L.length && /^\s{3,}\S/.test(L[i + 1]);
+    for (let i = 0; i < L.length; i++) {
+      const line = L[i];
+      if (/^\s*```/.test(line)) inFence = !inFence;
+      if (inFence) { out.push(line); continue; }
+      let m;
+      // "- **2, 6, 12, ?** → 42"  /  "- *Wrong:* … → *Correct:* …"  (bullet question with an arrow answer)
+      if ((m = line.match(/^- (\*.+?) (→ .+)$/))) {
+        bulletNo++;
+        const pad = " ".repeat(String(bulletNo).length + 2);
+        out.push(bulletNo + ". " + m[1], "", pad + m[2]);
+        if (nextIndented(i)) out.push("");
+        continue;
+      }
+      bulletNo = 0;
+      // "3. **Question?** answer…"
+      if ((m = line.match(/^(\d+)\. (\*\*.+?[?.:]\*\*)\s*(?:[—–-]\s*)?(\S.*)$/)) ||
+          // "3. *Question?* → answer"
+          (m = line.match(/^(\d+)\. (\*[^*].*?\*)\s*(→.*)$/))) {
+        const pad = " ".repeat(m[1].length + 2);
+        out.push(m[1] + ". " + m[2], "", pad + m[3]);
+        if (nextIndented(i)) out.push("");
+        continue;
+      }
+      out.push(line);
+      // "3. **Question**" or "3. *Question*" followed by an indented answer
+      if (/^\d+\. \*.+/.test(line) && nextIndented(i)) out.push("");
+    }
+    return out.join("\n");
+  }
+
+  marked.setOptions({ gfm: true, breaks: false });
+
+  // ---------- elements & state ----------
+  const $ = id => document.getElementById(id);
+  const page = $("page"), nav = $("nav"), search = $("search");
+  let done = new Set(store.get("qz-done", []));
+  let currentTopic = 0;   // 0 = home
+  let pendingQuery = "";
+
+  // ---------- theme ----------
+  const root = document.documentElement;
+  const savedTheme = store.get("qz-theme", null);
+  if (savedTheme) root.setAttribute("data-theme", savedTheme);
+  $("themeBtn").addEventListener("click", () => {
+    const isDark = root.getAttribute("data-theme")
+      ? root.getAttribute("data-theme") === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const next = isDark ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    store.set("qz-theme", next);
+  });
+
+  // ---------- self-test mode ----------
+  function setQuiz(on) {
+    document.body.classList.toggle("quiz", on);
+    $("quizBtn").setAttribute("aria-pressed", String(on));
+    store.set("qz-quiz", on);
+  }
+  setQuiz(!!store.get("qz-quiz", false));
+  $("quizBtn").addEventListener("click", () => setQuiz(!document.body.classList.contains("quiz")));
+
+  // ---------- mobile nav ----------
+  const closeNav = () => document.body.classList.remove("nav-open");
+  $("menuBtn").addEventListener("click", () => document.body.classList.toggle("nav-open"));
+  $("overlay").addEventListener("click", closeNav);
+
+  // ---------- progress ----------
+  function updateProgress() {
+    const n = topics.filter(t => done.has(t.num)).length;
+    $("progressText").textContent = n + " / " + topics.length + " done";
+    $("progressFill").style.width = (topics.length ? (n / topics.length) * 100 : 0) + "%";
+  }
+  function toggleDone(num) {
+    done.has(num) ? done.delete(num) : done.add(num);
+    store.set("qz-done", [...done]);
+    updateProgress();
+  }
+
+  // ---------- sidebar ----------
+  function navButton(t, extra) {
+    const b = document.createElement("button");
+    b.className = "nav-item" + (t.num === currentTopic ? " active" : "") + (done.has(t.num) ? " done" : "");
+    const num = document.createElement("span");
+    num.className = "nav-num";
+    num.textContent = done.has(t.num) ? "✓" : t.num;
+    const title = document.createElement("span");
+    title.className = "nav-title";
+    title.textContent = t.title;
+    if (extra) title.appendChild(extra);
+    b.append(num, title);
+    b.addEventListener("click", () => { go(t.num); closeNav(); });
+    return b;
+  }
+  function renderNav() {
+    const q = search.value.trim();
+    nav.innerHTML = "";
+    if (q.length < 2) { topics.forEach(t => nav.appendChild(navButton(t))); return; }
+    const ql = q.toLowerCase();
+    let any = false;
+    topics.forEach(t => {
+      let count = 0, idx = t.lower.indexOf(ql), first = idx;
+      while (idx !== -1) { count++; idx = t.lower.indexOf(ql, idx + ql.length); }
+      if (t.title.toLowerCase().includes(ql) && count === 0) { count = 1; first = -1; }
+      if (!count) return;
+      any = true;
+      const snip = document.createElement("span");
+      snip.className = "result-snippet";
+      if (first >= 0) {
+        const s = Math.max(0, first - 30);
+        snip.textContent = (s > 0 ? "…" : "") +
+          t.md.slice(s, first + ql.length + 40).replace(/[*`#>|_]/g, "").replace(/\s+/g, " ").trim() + "…";
+      }
+      const c = document.createElement("span");
+      c.className = "result-count";
+      c.textContent = " (" + count + ")";
+      snip.prepend(c);
+      const b = navButton(t, snip);
+      b.addEventListener("click", () => { pendingQuery = q; }, true);
+      nav.appendChild(b);
+    });
+    if (!any) nav.innerHTML = '<div class="nav-empty">No matches.</div>';
+  }
+  let searchTimer;
+  search.addEventListener("input", () => { clearTimeout(searchTimer); searchTimer = setTimeout(renderNav, 120); });
+  search.addEventListener("keydown", e => {
+    if (e.key === "Enter") { const first = nav.querySelector(".nav-item"); if (first) first.click(); }
+    if (e.key === "Escape") { search.value = ""; renderNav(); search.blur(); }
+  });
+
+  // ---------- routing ----------
+  function go(n) {
+    const h = n ? "#topic-" + n : "#home";
+    if (location.hash === h) route(); else location.hash = h;
+  }
+  function route() {
+    const m = location.hash.match(/^#topic-(\d+)$/);
+    const n = m ? +m[1] : 0;
+    if (n >= 1 && n <= topics.length) renderTopic(n); else renderHome();
+    renderNav();
+    window.scrollTo(0, 0);
+    if (pendingQuery) { highlight(pendingQuery); pendingQuery = ""; }
+    updateReadProgress();
+  }
+  window.addEventListener("hashchange", route);
+
+  // ---------- self-test helper ----------
+  // container gets class "qa"; question parts get "q"; everything else is the answer (hidden in self-test mode)
+  function makeQA(container, qParts) {
+    container.classList.add("qa");
+    qParts.forEach(q => q.classList.add("q"));
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "reveal";
+    btn.textContent = "Show answer";
+    qParts[qParts.length - 1].after(btn);
+    const toggle = () => {
+      const open = container.classList.toggle("open");
+      btn.textContent = open ? "Hide answer" : "Show answer";
+    };
+    btn.addEventListener("click", toggle);
+    qParts[0].addEventListener("click", e => {
+      if (document.body.classList.contains("quiz") && !e.target.closest("a, button")) toggle();
+    });
+  }
+
+  // ---------- home ----------
+  function renderHome() {
+    currentTopic = 0;
+    document.title = siteTitle;
+    $("topbarTitle").textContent = "Home";
+    const last = store.get("qz-last", 0);
+    page.innerHTML = "";
+    const h = document.createElement("h1");
+    h.textContent = siteTitle;
+    const intro = document.createElement("div");
+    intro.className = "md home-intro";
+    intro.innerHTML = "<p>Topic-wise preparation: aptitude, programming (OOP, Java, C#/.NET), DSA and coding, " +
+      "databases and SQL, APIs, OS and networks, cloud, AI, software testing, group discussion and HR. " +
+      "Read one topic at a time and mark it as completed when you're done.</p>";
+    const homeHint = document.createElement("div");
+    homeHint.className = "quiz-hint";
+    homeHint.textContent = "Self-test is on. Open any topic: answers stay hidden until you press \u201cShow answer\u201d.";
+    const actions = document.createElement("div");
+    actions.className = "home-actions";
+    const start = document.createElement("button");
+    start.className = "primary-btn";
+    start.textContent = last ? "Continue: " + last + ". " + topics[last - 1].title + " →" : "Start with topic 1 →";
+    start.addEventListener("click", () => go(last || 1));
+    actions.appendChild(start);
+    const grid = document.createElement("div");
+    grid.className = "grid";
+    topics.forEach(t => {
+      const c = document.createElement("button");
+      c.className = "card" + (done.has(t.num) ? " done" : "");
+      const num = document.createElement("span");
+      num.className = "nav-num";
+      num.textContent = done.has(t.num) ? "✓" : t.num;
+      const body = document.createElement("div");
+      const tt = document.createElement("div"); tt.className = "card-title"; tt.textContent = t.title;
+      const meta = document.createElement("div"); meta.className = "card-meta";
+      const bits = [];
+      if (t.questions) bits.push(t.questions + " questions");
+      if (t.subs) bits.push(t.subs + " sub-topics");
+      meta.textContent = bits.join(" · ") || "Reading";
+      body.append(tt, meta);
+      c.append(num, body);
+      c.addEventListener("click", () => go(t.num));
+      grid.appendChild(c);
+    });
+    page.append(h, intro, homeHint, actions, grid);
+  }
+
+  // ---------- topic ----------
+  function renderTopic(n) {
+    currentTopic = n;
+    store.set("qz-last", n);
+    const t = topics[n - 1];
+    document.title = t.num + ". " + t.title + " · Interview Prep";
+    $("topbarTitle").textContent = t.num + ". " + t.title;
+    page.innerHTML = "";
+
+    const eyebrow = document.createElement("p");
+    eyebrow.className = "eyebrow";
+    eyebrow.textContent = "Topic " + t.num + " of " + topics.length;
+    const h = document.createElement("h1");
+    h.textContent = t.title;
+    const chips = document.createElement("nav");
+    chips.className = "chips";
+    const hint = document.createElement("div");
+    hint.className = "quiz-hint";
+    hint.textContent = "Self-test is on: answer each question in your head first, then press \u201cShow answer\u201d to check.";
+    const md = document.createElement("div");
+    md.className = "md";
+    md.innerHTML = marked.parse(splitQA(t.md));
+
+    // sub-topic chips
+    md.querySelectorAll("h3").forEach((el, i) => {
+      el.id = "sub-" + (i + 1);
+      const c = document.createElement("button");
+      c.className = "chip";
+      c.textContent = el.textContent.replace(/^\d+\.\d+\s*/, "");
+      c.addEventListener("click", () => el.scrollIntoView({ behavior: "smooth", block: "start" }));
+      chips.appendChild(c);
+    });
+
+    // code: highlight + copy button
+    md.querySelectorAll("pre code").forEach(code => {
+      if (window.hljs) { try { hljs.highlightElement(code); } catch (e) {} }
+      const btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.textContent = "Copy";
+      btn.addEventListener("click", () => {
+        const ok = () => { btn.textContent = "Copied"; setTimeout(() => (btn.textContent = "Copy"), 1200); };
+        try { navigator.clipboard.writeText(code.innerText).then(ok, () => {}); } catch (e) {}
+      });
+      code.parentElement.appendChild(btn);
+    });
+
+    // external links open in a new tab
+    md.querySelectorAll('a[href^="http"]').forEach(a => { a.target = "_blank"; a.rel = "noopener"; });
+
+    // ----- self-test: mark question + answer parts -----
+    // 1) numbered questions:  <li><p><strong|em>Question</…></p> …answer…</li>
+    md.querySelectorAll(":scope > ol > li").forEach(li => {
+      const p = li.firstElementChild;
+      const lead = p && p.firstElementChild;
+      if (p && p.tagName === "P" && lead && (lead.tagName === "STRONG" || lead.tagName === "EM") &&
+          p.textContent.trim().startsWith(lead.textContent.trim()) && li.children.length > 1) {
+        makeQA(li, [p]);
+      }
+    });
+    // 2) output MCQs:  <p><strong>Q1.</strong></p> <pre>code</pre> …explanation…
+    [...md.children].forEach(el => {
+      if (el.tagName !== "P" || !/^Q\d+\.$/.test(el.textContent.trim())) return;
+      const card = document.createElement("div");
+      card.className = "mcq-card";
+      el.before(card);
+      const qParts = [el];
+      card.appendChild(el);
+      while (card.nextElementSibling && card.nextElementSibling.tagName === "PRE") {
+        qParts.push(card.nextElementSibling);
+        card.appendChild(card.nextElementSibling);
+      }
+      let nx = card.nextElementSibling;
+      while (nx && !/^H[1-4]$|^HR$/.test(nx.tagName) && !(nx.tagName === "P" && /^Q\d+\.$/.test(nx.textContent.trim()))) {
+        card.appendChild(nx);
+        nx = card.nextElementSibling;
+      }
+      if (card.children.length > qParts.length || card.querySelector(".hljs-comment")) makeQA(card, qParts);
+    });
+
+    // footer: mark done + prev/next
+    const doneRow = document.createElement("div");
+    doneRow.className = "done-row";
+    const doneBtn = document.createElement("button");
+    const paintDone = () => {
+      const d = done.has(n);
+      doneBtn.className = "done-btn" + (d ? " is-done" : "");
+      doneBtn.textContent = d ? "✓ Completed" : "Mark this topic as completed";
+    };
+    paintDone();
+    doneBtn.addEventListener("click", () => { toggleDone(n); paintDone(); renderNav(); });
+    doneRow.appendChild(doneBtn);
+
+    const pager = document.createElement("div");
+    pager.className = "pager";
+    const mk = (cls, dir, target) => {
+      const b = document.createElement("button");
+      b.className = cls;
+      const d = document.createElement("span"); d.className = "dir"; d.textContent = dir;
+      const tt = document.createElement("span"); tt.className = "ttl";
+      tt.textContent = target ? target.num + ". " + target.title : "Home";
+      b.append(d, tt);
+      b.addEventListener("click", () => go(target ? target.num : 0));
+      return b;
+    };
+    pager.appendChild(n > 1 ? mk("prev", "← Previous", topics[n - 2]) : mk("prev", "← Back to", null));
+    if (n < topics.length) pager.appendChild(mk("next", "Next →", topics[n]));
+    const kbd = document.createElement("div");
+    kbd.className = "kbd-hint";
+    kbd.textContent = "Tip: use the ← and → arrow keys to move between topics.";
+
+    page.append(eyebrow, h, chips, hint, md, doneRow, pager, kbd);
+  }
+
+  // ---------- search highlight inside a topic ----------
+  function highlight(q) {
+    const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+    const md = page.querySelector(".md");
+    if (!md) return;
+    const walker = document.createTreeWalker(md, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) {
+      re.lastIndex = 0;
+      if (re.test(walker.currentNode.nodeValue)) nodes.push(walker.currentNode);
+    }
+    nodes.forEach(node => {
+      const frag = document.createDocumentFragment();
+      const text = node.nodeValue;
+      let last = 0;
+      re.lastIndex = 0;
+      let m;
+      while ((m = re.exec(text))) {
+        frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        const mk = document.createElement("mark");
+        mk.textContent = m[0];
+        frag.appendChild(mk);
+        last = m.index + m[0].length;
+      }
+      frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+    const first = md.querySelector("mark");
+    if (first) {
+      const qa = first.closest(".qa");
+      if (qa && !qa.classList.contains("open")) { const b = qa.querySelector(".reveal"); if (b) b.click(); }
+      setTimeout(() => first.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
+    }
+  }
+
+  // ---------- keyboard ----------
+  document.addEventListener("keydown", e => {
+    const tag = (e.target.tagName || "").toLowerCase();
+    if (tag === "input" || tag === "textarea" || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === "ArrowRight" && currentTopic < topics.length) go(currentTopic + 1);
+    if (e.key === "ArrowLeft" && currentTopic > 1) go(currentTopic - 1);
+    if (e.key === "/") { e.preventDefault(); search.focus(); }
+  });
+
+  // ---------- reading progress ----------
+  function updateReadProgress() {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    $("readProgress").style.width = (h > 0 ? Math.min(100, (window.scrollY / h) * 100) : 0) + "%";
+  }
+  window.addEventListener("scroll", updateReadProgress, { passive: true });
+
+  updateProgress();
+  route();
+})();
+</script>
+</body>
+</html>

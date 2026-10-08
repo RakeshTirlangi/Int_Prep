@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interview Study Guide</title>
+<meta name="description" content="Topic-wise interview study guide: aptitude, OOP, Java, C#/.NET, DSA, SQL, APIs, Cloud, AI, Testing, GD and HR.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --surface-2: #f1f1ee;
+  --text: #1d1d1b;
+  --muted: #5f5f5a;
+  --border: #e3e3de;
+  --accent: #4338ca;
+  --accent-soft: #eceafd;
+  --done: #15803d;
+  --mark: #fde68a;
+  --code-bg: #f4f4f1;
+  --code-text: #24292f;
+  --hl-keyword: #cf222e;
+  --hl-string: #0a3069;
+  --hl-comment: #6e7781;
+  --hl-number: #0550ae;
+  --hl-title: #8250df;
+  --hl-type: #953800;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
+  --sidebar-w: 300px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111317;
+    --surface: #181b21;
+    --surface-2: #20242c;
+    --text: #e8e8ea;
+    --muted: #a2a3ab;
+    --border: #2c3039;
+    --accent: #9aa2ff;
+    --accent-soft: #252a4a;
+    --done: #4ade80;
+    --mark: #6b5a12;
+    --code-bg: #0d0f13;
+    --code-text: #e6edf3;
+    --hl-keyword: #ff7b72;
+    --hl-string: #a5d6ff;
+    --hl-comment: #8b949e;
+    --hl-number: #79c0ff;
+    --hl-title: #d2a8ff;
+    --hl-type: #ffa657;
+    --shadow: none;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111317;
+  --surface: #181b21;
+  --surface-2: #20242c;
+  --text: #e8e8ea;
+  --muted: #a2a3ab;
+  --border: #2c3039;
+  --accent: #9aa2ff;
+  --accent-soft: #252a4a;
+  --done: #4ade80;
+  --mark: #6b5a12;
+  --code-bg: #0d0f13;
+  --code-text: #e6edf3;
+  --hl-keyword: #ff7b72;
+  --hl-string: #a5d6ff;
+  --hl-comment: #8b949e;
+  --hl-number: #79c0ff;
+  --hl-title: #d2a8ff;
+  --hl-type: #ffa657;
+  --shadow: none;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+}
+a { color: var(--accent); }
+button { font: inherit; color: inherit; }
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  position: fixed; inset: 0 auto 0 0;
+  width: var(--sidebar-w);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  z-index: 30;
+}
+.brand {
+  padding: 20px 20px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.brand a { text-decoration: none; color: var(--text); display: block; }
+.brand .name { font-weight: 700; font-size: 17px; }
+.brand .sub { font-size: 13px; color: var(--muted); }
+.progress-wrap { margin-top: 12px; }
+.progress-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.progress-track { height: 6px; background: var(--surface-2); border-radius: 99px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0; background: var(--done); border-radius: 99px; transition: width .3s; }
+
+.search { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.search input {
+  width: 100%; padding: 9px 12px;
+  font: inherit; font-size: 14px;
+  color: var(--text); background: var(--surface-2);
+  border: 1px solid var(--border); border-radius: 8px;
+  outline: none;
+}
+.search input:focus { border-color: var(--accent); }
+
+.nav { flex: 1; overflow-y: auto; padding: 8px 8px 24px; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; text-align: left;
+  padding: 8px 10px; margin: 1px 0;
+  background: none; border: 0; border-radius: 8px;
+  font-size: 14px; line-height: 1.35; color: var(--text);
+  cursor: pointer;
+}
+.nav-item:hover { background: var(--surface-2); }
+.nav-item.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.nav-num {
+  flex: 0 0 26px; height: 26px;
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 600;
+  border-radius: 50%;
+  background: var(--surface-2); color: var(--muted);
+}
+.nav-item.active .nav-num { background: var(--accent); color: var(--surface); }
+.nav-item.done .nav-num { background: var(--done); color: var(--surface); }
+.nav-title { flex: 1; }
+.result-snippet { display: block; font-size: 12px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+.result-count { font-size: 11px; color: var(--muted); }
+.nav-empty { padding: 16px; font-size: 14px; color: var(--muted); }
+
+/* ---------- Main ---------- */
+.main { margin-left: var(--sidebar-w); min-height: 100vh; }
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 24px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-title { flex: 1; font-size: 14px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.icon-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 12px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  font-size: 13px; cursor: pointer;
+}
+.icon-btn:hover { border-color: var(--accent); }
+.icon-btn[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.menu-btn { display: none; }
+.read-progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--accent); }
+
+.page { max-width: 820px; margin: 0 auto; padding: 32px 24px 80px; }
+.eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); margin: 0 0 4px; }
+.page h1 { font-size: 32px; line-height: 1.25; margin: 0 0 16px; letter-spacing: -.01em; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 24px; }
+.chip {
+  padding: 4px 10px; font-size: 13px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 99px;
+  cursor: pointer; color: var(--muted);
+}
+.chip:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- Markdown content ---------- */
+.md h2 { font-size: 24px; margin: 40px 0 12px; }
+.md h3 {
+  font-size: 20px; margin: 40px 0 12px; padding-top: 16px;
+  border-top: 1px solid var(--border);
+  scroll-margin-top: 70px;
+}
+.md h3:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+.md h4 { font-size: 17px; margin: 24px 0 8px; }
+.md p { margin: 0 0 14px; }
+.md ul, .md ol { padding-left: 26px; margin: 0 0 16px; }
+.md li { margin: 4px 0; }
+.md li > p { margin-bottom: 8px; }
+.md > ol > li {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px 6px 8px;
+  margin: 0 0 14px;
+  box-shadow: var(--shadow);
+}
+.md > ol > li::marker { color: var(--accent); font-weight: 700; }
+.md > ol { padding-left: 34px; }
+.md strong { font-weight: 650; }
+.md hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
+.md blockquote { margin: 0 0 16px; padding: 4px 16px; border-left: 3px solid var(--accent); color: var(--muted); }
+.md code {
+  font-family: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  font-size: .86em;
+  background: var(--surface-2);
+  padding: 2px 5px; border-radius: 5px;
+}
+.md pre {
+  position: relative;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  margin: 8px 0 16px;
+  line-height: 1.55;
+}
+.md pre code { background: none; padding: 0; font-size: 13.5px; color: var(--code-text); }
+.copy-btn {
+  position: absolute; top: 8px; right: 8px;
+  padding: 3px 9px; font-size: 12px;
+  background: var(--surface); color: var(--muted);
+  border: 1px solid var(--border); border-radius: 6px;
+  cursor: pointer; opacity: 0; transition: opacity .15s;
+}
+.md pre:hover .copy-btn, .copy-btn:focus { opacity: 1; }
+@media (hover: none) { .copy-btn { opacity: 1; } }
+mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1px; }
+
+/* highlight.js tokens (theme-aware) */
+.hljs-keyword, .hljs-selector-tag, .hljs-meta .hljs-keyword { color: var(--hl-keyword); }
+.hljs-string, .hljs-regexp, .hljs-meta .hljs-string { color: var(--hl-string); }
+.hljs-comment, .hljs-quote { color: var(--hl-comment); font-style: italic; }
+.hljs-number, .hljs-literal, .hljs-variable, .hljs-attr { color: var(--hl-number); }
+.hljs-title, .hljs-title.function_, .hljs-section { color: var(--hl-title); }
+.hljs-type, .hljs-built_in, .hljs-title.class_, .hljs-params { color: var(--hl-type); }
+.hljs-meta { color: var(--hl-comment); }
+
+/* ---------- Self-test mode ---------- */
+.mcq-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px 6px;
+  margin: 0 0 14px;
+  box-shadow: var(--shadow);
+}
+.reveal {
+  display: none;
+  margin: 2px 0 10px;
+  padding: 5px 14px;
+  font-size: 13px; font-weight: 600;
+  color: var(--accent); background: var(--accent-soft);
+  border: 1px solid var(--accent); border-radius: 99px;
+  cursor: pointer;
+}
+.reveal:hover { background: var(--accent); color: var(--surface); }
+body.quiz .qa .reveal { display: inline-block; }
+body.quiz .qa:not(.open) > :not(.q):not(.reveal) { display: none; }
+body.quiz .qa > .q:first-child { cursor: pointer; }
+/* in output MCQs, answer comments inside the code ( // true ) are hidden too */
+body.quiz .qa:not(.open) pre.q .hljs-comment { visibility: hidden; }
+.quiz-hint {
+  display: none;
+  background: var(--accent-soft); color: var(--accent);
+  border-radius: 10px; padding: 10px 14px; font-size: 14px; margin-bottom: 20px;
+}
+body.quiz .quiz-hint { display: block; }
+
+/* ---------- Topic footer ---------- */
+.done-row { display: flex; justify-content: center; margin: 40px 0 24px; }
+.done-btn {
+  padding: 10px 20px; font-weight: 600; font-size: 15px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px; cursor: pointer;
+}
+.done-btn:hover { border-color: var(--done); }
+.done-btn.is-done { background: var(--done); border-color: var(--done); color: var(--surface); }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pager button {
+  text-align: left; padding: 14px 16px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  cursor: pointer; box-shadow: var(--shadow);
+}
+.pager button:hover { border-color: var(--accent); }
+.pager button.next { text-align: right; grid-column: 2; }
+.pager .dir { display: block; font-size: 12px; color: var(--muted); }
+.pager .ttl { display: block; font-weight: 600; color: var(--accent); line-height: 1.35; }
+.kbd-hint { text-align: center; font-size: 12px; color: var(--muted); margin-top: 16px; }
+
+/* ---------- Home ---------- */
+.home-intro { color: var(--muted); margin-bottom: 20px; }
+.home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.primary-btn {
+  padding: 11px 20px; font-weight: 600;
+  background: var(--accent); color: var(--surface);
+  border: 0; border-radius: 10px; cursor: pointer;
+}
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.card {
+  display: flex; gap: 12px; align-items: flex-start;
+  text-align: left; padding: 14px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  cursor: pointer; box-shadow: var(--shadow);
+}
+.card:hover { border-color: var(--accent); }
+.card .nav-num { margin-top: 1px; }
+.card.done .nav-num { background: var(--done); color: var(--surface); }
+.card-title { font-weight: 600; font-size: 15px; line-height: 1.35; }
+.card-meta { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+.overlay { display: none; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-100%); transition: transform .2s; width: min(86vw, 320px); }
+  body.nav-open .sidebar { transform: none; box-shadow: 0 0 40px rgba(0,0,0,.25); }
+  body.nav-open .overlay { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 25; }
+  .main { margin-left: 0; }
+  .menu-btn { display: inline-flex; }
+  .topbar { padding: 8px 16px; }
+  .page { padding: 24px 16px 64px; }
+  .page h1 { font-size: 26px; }
+  body { font-size: 16px; }
+  .md > ol { padding-left: 28px; }
+  .md > ol > li { padding: 12px 14px 4px 6px; }
+  .pager { grid-template-columns: 1fr; }
+  .pager button.next { grid-column: 1; }
+  .icon-btn .lbl { display: none; }
+}
+@media print {
+  .sidebar, .topbar, .done-row, .pager, .kbd-hint, .chips { display: none !important; }
+  .main { margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <a href="#home"><div class="name">Interview Study Guide</div><div class="sub">Topic-wise study guide</div></a>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Progress</span><span id="progressText">0 / 0</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+  </div>
+  <div class="search"><input id="search" type="search" placeholder="Search all topics…" autocomplete="off"></div>
+  <nav class="nav" id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<div class="main">
+  <header class="topbar">
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open topics"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg> <span class="lbl">Topics</span></button>
+    <div class="topbar-title" id="topbarTitle"></div>
+    <button class="icon-btn" id="quizBtn" aria-pressed="false" title="Hide answers until you click a question"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg> <span class="lbl">Self-test</span></button>
+    <button class="icon-btn" id="themeBtn" title="Toggle light/dark theme"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg> <span class="lbl">Theme</span></button>
+    <div class="read-progress" id="readProgress"></div>
+  </header>
+  <main class="page" id="page"></main>
+</div>
+
+<script type="text/markdown" id="guide-md"><!--GUIDE_MD--></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // ---------- storage (safe) ----------
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+
+  // ---------- parse the guide into topics ----------
+  const raw = document.getElementById("guide-md").textContent;
+  const lines = raw.split("\n");
+  const preamble = [];
+  const topics = [];
+  let cur = null, skipping = false;
+  for (const line of lines) {
+    const m = line.match(/^## (\d+)\.\s+(.*)$/);
+    if (m) { cur = { num: +m[1], title: m[2].trim(), lines: [] }; topics.push(cur); skipping = false; continue; }
+    if (/^## /.test(line)) { skipping = true; cur = null; continue; }   // e.g. "Table of Contents"
+    if (skipping) continue;
+    if (cur) cur.lines.push(line); else preamble.push(line);
+  }
+  topics.forEach(t => {
+    t.md = t.lines.join("\n").replace(/(\n\s*---\s*)+\s*$/, "").trim();
+    t.lower = t.md.toLowerCase();
+    t.questions = (t.md.match(/^\d+\. \*/gm) || []).length + (t.md.match(/^\*\*Q\d+\.\*\*/gm) || []).length;
+    t.subs = (t.md.match(/^### /gm) || []).length;
+  });
+  const siteTitle = "Interview Study Guide";
+
+  // Normalise every question format into "N. question" + blank line + indented answer,
+  // so each question renders as its own paragraph and the answer can be hidden in self-test mode.
+  function splitQA(md) {
+    const L = md.split("\n"), out = [];
+    let bulletNo = 0, inFence = false;
+    const nextIndented = i => i + 1 < L.length && /^\s{3,}\S/.test(L[i + 1]);
+    for (let i = 0; i < L.length; i++) {
+      const line = L[i];
+      if (/^\s*```/.test(line)) inFence = !inFence;
+      if (inFence) { out.push(line); continue; }
+      let m;
+      // "- **2, 6, 12, ?** → 42"  /  "- *Wrong:* … → *Correct:* …"  (bullet question with an arrow answer)
+      if ((m = line.match(/^- (\*.+?) (→ .+)$/))) {
+        bulletNo++;
+        const pad = " ".repeat(String(bulletNo).length + 2);
+        out.push(bulletNo + ". " + m[1], "", pad + m[2]);
+        if (nextIndented(i)) out.push("");
+        continue;
+      }
+      bulletNo = 0;
+      // "3. **Question?** answer…"
+      if ((m = line.match(/^(\d+)\. (\*\*.+?[?.:]\*\*)\s*(?:[—–-]\s*)?(\S.*)$/)) ||
+          // "3. *Question?* → answer"
+          (m = line.match(/^(\d+)\. (\*[^*].*?\*)\s*(→.*)$/))) {
+        const pad = " ".repeat(m[1].length + 2);
+        out.push(m[1] + ". " + m[2], "", pad + m[3]);
+        if (nextIndented(i)) out.push("");
+        continue;
+      }
+      out.push(line);
+      // "3. **Question**" or "3. *Question*" followed by an indented answer
+      if (/^\d+\. \*.+/.test(line) && nextIndented(i)) out.push("");
+    }
+    return out.join("\n");
+  }
+
+  marked.setOptions({ gfm: true, breaks: false });
+
+  // ---------- elements & state ----------
+  const $ = id => document.getElementById(id);
+  const page = $("page"), nav = $("nav"), search = $("search");
+  let done = new Set(store.get("qz-done", []));
+  let currentTopic = 0;   // 0 = home
+  let pendingQuery = "";
+
+  // ---------- theme ----------
+  const root = document.documentElement;
+  const savedTheme = store.get("qz-theme", null);
+  if (savedTheme) root.setAttribute("data-theme", savedTheme);
+  $("themeBtn").addEventListener("click", () => {
+    const isDark = root.getAttribute("data-theme")
+      ? root.getAttribute("data-theme") === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const next = isDark ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    store.set("qz-theme", next);
+  });
+
+  // ---------- self-test mode ----------
+  function setQuiz(on) {
+    document.body.classList.toggle("quiz", on);
+    $("quizBtn").setAttribute("aria-pressed", String(on));
+    store.set("qz-quiz", on);
+  }
+  setQuiz(!!store.get("qz-quiz", false));
+  $("quizBtn").addEventListener("click", () => setQuiz(!document.body.classList.contains("quiz")));
+
+  // ---------- mobile nav ----------
+  const closeNav = () => document.body.classList.remove("nav-open");
+  $("menuBtn").addEventListener("click", () => document.body.classList.toggle("nav-open"));
+  $("overlay").addEventListener("click", closeNav);
+
+  // ---------- progress ----------
+  function updateProgress() {
+    const n = topics.filter(t => done.has(t.num)).length;
+    $("progressText").textContent = n + " / " + topics.length + " done";
+    $("progressFill").style.width = (topics.length ? (n / topics.length) * 100 : 0) + "%";
+  }
+  function toggleDone(num) {
+    done.has(num) ? done.delete(num) : done.add(num);
+    store.set("qz-done", [...done]);
+    updateProgress();
+  }
+
+  // ---------- sidebar ----------
+  function navButton(t, extra) {
+    const b = document.createElement("button");
+    b.className = "nav-item" + (t.num === currentTopic ? " active" : "") + (done.has(t.num) ? " done" : "");
+    const num = document.createElement("span");
+    num.className = "nav-num";
+    num.textContent = done.has(t.num) ? "✓" : t.num;
+    const title = document.createElement("span");
+    title.className = "nav-title";
+    title.textContent = t.title;
+    if (extra) title.appendChild(extra);
+    b.append(num, title);
+    b.addEventListener("click", () => { go(t.num); closeNav(); });
+    return b;
+  }
+  function renderNav() {
+    const q = search.value.trim();
+    nav.innerHTML = "";
+    if (q.length < 2) { topics.forEach(t => nav.appendChild(navButton(t))); return; }
+    const ql = q.toLowerCase();
+    let any = false;
+    topics.forEach(t => {
+      let count = 0, idx = t.lower.indexOf(ql), first = idx;
+      while (idx !== -1) { count++; idx = t.lower.indexOf(ql, idx + ql.length); }
+      if (t.title.toLowerCase().includes(ql) && count === 0) { count = 1; first = -1; }
+      if (!count) return;
+      any = true;
+      const snip = document.createElement("span");
+      snip.className = "result-snippet";
+      if (first >= 0) {
+        const s = Math.max(0, first - 30);
+        snip.textContent = (s > 0 ? "…" : "") +
+          t.md.slice(s, first + ql.length + 40).replace(/[*`#>|_]/g, "").replace(/\s+/g, " ").trim() + "…";
+      }
+      const c = document.createElement("span");
+      c.className = "result-count";
+      c.textContent = " (" + count + ")";
+      snip.prepend(c);
+      const b = navButton(t, snip);
+      b.addEventListener("click", () => { pendingQuery = q; }, true);
+      nav.appendChild(b);
+    });
+    if (!any) nav.innerHTML = '<div class="nav-empty">No matches.</div>';
+  }
+  let searchTimer;
+  search.addEventListener("input", () => { clearTimeout(searchTimer); searchTimer = setTimeout(renderNav, 120); });
+  search.addEventListener("keydown", e => {
+    if (e.key === "Enter") { const first = nav.querySelector(".nav-item"); if (first) first.click(); }
+    if (e.key === "Escape") { search.value = ""; renderNav(); search.blur(); }
+  });
+
+  // ---------- routing ----------
+  function go(n) {
+    const h = n ? "#topic-" + n : "#home";
+    if (location.hash === h) route(); else location.hash = h;
+  }
+  function route() {
+    const m = location.hash.match(/^#topic-(\d+)$/);
+    const n = m ? +m[1] : 0;
+    if (n >= 1 && n <= topics.length) renderTopic(n); else renderHome();
+    renderNav();
+    window.scrollTo(0, 0);
+    if (pendingQuery) { highlight(pendingQuery); pendingQuery = ""; }
+    updateReadProgress();
+  }
+  window.addEventListener("hashchange", route);
+
+  // ---------- self-test helper ----------
+  // container gets class "qa"; question parts get "q"; everything else is the answer (hidden in self-test mode)
+  function makeQA(container, qParts) {
+    container.classList.add("qa");
+    qParts.forEach(q => q.classList.add("q"));
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "reveal";
+    btn.textContent = "Show answer";
+    qParts[qParts.length - 1].after(btn);
+    const toggle = () => {
+      const open = container.classList.toggle("open");
+      btn.textContent = open ? "Hide answer" : "Show answer";
+    };
+    btn.addEventListener("click", toggle);
+    qParts[0].addEventListener("click", e => {
+      if (document.body.classList.contains("quiz") && !e.target.closest("a, button")) toggle();
+    });
+  }
+
+  // ---------- home ----------
+  function renderHome() {
+    currentTopic = 0;
+    document.title = siteTitle;
+    $("topbarTitle").textContent = "Home";
+    const last = store.get("qz-last", 0);
+    page.innerHTML = "";
+    const h = document.createElement("h1");
+    h.textContent = siteTitle;
+    const intro = document.createElement("div");
+    intro.className = "md home-intro";
+    intro.innerHTML = "<p>Topic-wise preparation: aptitude, programming (OOP, Java, C#/.NET), DSA and coding, " +
+      "databases and SQL, APIs, OS and networks, cloud, AI, software testing, group discussion and HR. " +
+      "Read one topic at a time and mark it as completed when you're done.</p>";
+    const homeHint = document.createElement("div");
+    homeHint.className = "quiz-hint";
+    homeHint.textContent = "Self-test is on. Open any topic: answers stay hidden until you press \u201cShow answer\u201d.";
+    const actions = document.createElement("div");
+    actions.className = "home-actions";
+    const start = document.createElement("button");
+    start.className = "primary-btn";
+    start.textContent = last ? "Continue: " + last + ". " + topics[last - 1].title + " →" : "Start with topic 1 →";
+    start.addEventListener("click", () => go(last || 1));
+    actions.appendChild(start);
+    const grid = document.createElement("div");
+    grid.className = "grid";
+    topics.forEach(t => {
+      const c = document.createElement("button");
+      c.className = "card" + (done.has(t.num) ? " done" : "");
+      const num = document.createElement("span");
+      num.className = "nav-num";
+      num.textContent = done.has(t.num) ? "✓" : t.num;
+      const body = document.createElement("div");
+      const tt = document.createElement("div"); tt.className = "card-title"; tt.textContent = t.title;
+      const meta = document.createElement("div"); meta.className = "card-meta";
+      const bits = [];
+      if (t.questions) bits.push(t.questions + " questions");
+      if (t.subs) bits.push(t.subs + " sub-topics");
+      meta.textContent = bits.join(" · ") || "Reading";
+      body.append(tt, meta);
+      c.append(num, body);
+      c.addEventListener("click", () => go(t.num));
+      grid.appendChild(c);
+    });
+    page.append(h, intro, homeHint, actions, grid);
+  }
+
+  // ---------- topic ----------
+  function renderTopic(n) {
+    currentTopic = n;
+    store.set("qz-last", n);
+    const t = topics[n - 1];
+    document.title = t.num + ". " + t.title + " · Interview Prep";
+    $("topbarTitle").textContent = t.num + ". " + t.title;
+    page.innerHTML = "";
+
+    const eyebrow = document.createElement("p");
+    eyebrow.className = "eyebrow";
+    eyebrow.textContent = "Topic " + t.num + " of " + topics.length;
+    const h = document.createElement("h1");
+    h.textContent = t.title;
+    const chips = document.createElement("nav");
+    chips.className = "chips";
+    const hint = document.createElement("div");
+    hint.className = "quiz-hint";
+    hint.textContent = "Self-test is on: answer each question in your head first, then press \u201cShow answer\u201d to check.";
+    const md = document.createElement("div");
+    md.className = "md";
+    md.innerHTML = marked.parse(splitQA(t.md));
+
+    // sub-topic chips
+    md.querySelectorAll("h3").forEach((el, i) => {
+      el.id = "sub-" + (i + 1);
+      const c = document.createElement("button");
+      c.className = "chip";
+      c.textContent = el.textContent.replace(/^\d+\.\d+\s*/, "");
+      c.addEventListener("click", () => el.scrollIntoView({ behavior: "smooth", block: "start" }));
+      chips.appendChild(c);
+    });
+
+    // code: highlight + copy button
+    md.querySelectorAll("pre code").forEach(code => {
+      if (window.hljs) { try { hljs.highlightElement(code); } catch (e) {} }
+      const btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.textContent = "Copy";
+      btn.addEventListener("click", () => {
+        const ok = () => { btn.textContent = "Copied"; setTimeout(() => (btn.textContent = "Copy"), 1200); };
+        try { navigator.clipboard.writeText(code.innerText).then(ok, () => {}); } catch (e) {}
+      });
+      code.parentElement.appendChild(btn);
+    });
+
+    // external links open in a new tab
+    md.querySelectorAll('a[href^="http"]').forEach(a => { a.target = "_blank"; a.rel = "noopener"; });
+
+    // ----- self-test: mark question + answer parts -----
+    // 1) numbered questions:  <li><p><strong|em>Question</…></p> …answer…</li>
+    md.querySelectorAll(":scope > ol > li").forEach(li => {
+      const p = li.firstElementChild;
+      const lead = p && p.firstElementChild;
+      if (p && p.tagName === "P" && lead && (lead.tagName === "STRONG" || lead.tagName === "EM") &&
+          p.textContent.trim().startsWith(lead.textContent.trim()) && li.children.length > 1) {
+        makeQA(li, [p]);
+      }
+    });
+    // 2) output MCQs:  <p><strong>Q1.</strong></p> <pre>code</pre> …explanation…
+    [...md.children].forEach(el => {
+      if (el.tagName !== "P" || !/^Q\d+\.$/.test(el.textContent.trim())) return;
+      const card = document.createElement("div");
+      card.className = "mcq-card";
+      el.before(card);
+      const qParts = [el];
+      card.appendChild(el);
+      while (card.nextElementSibling && card.nextElementSibling.tagName === "PRE") {
+        qParts.push(card.nextElementSibling);
+        card.appendChild(card.nextElementSibling);
+      }
+      let nx = card.nextElementSibling;
+      while (nx && !/^H[1-4]$|^HR$/.test(nx.tagName) && !(nx.tagName === "P" && /^Q\d+\.$/.test(nx.textContent.trim()))) {
+        card.appendChild(nx);
+        nx = card.nextElementSibling;
+      }
+      if (card.children.length > qParts.length || card.querySelector(".hljs-comment")) makeQA(card, qParts);
+    });
+
+    // footer: mark done + prev/next
+    const doneRow = document.createElement("div");
+    doneRow.className = "done-row";
+    const doneBtn = document.createElement("button");
+    const paintDone = () => {
+      const d = done.has(n);
+      doneBtn.className = "done-btn" + (d ? " is-done" : "");
+      doneBtn.textContent = d ? "✓ Completed" : "Mark this topic as completed";
+    };
+    paintDone();
+    doneBtn.addEventListener("click", () => { toggleDone(n); paintDone(); renderNav(); });
+    doneRow.appendChild(doneBtn);
+
+    const pager = document.createElement("div");
+    pager.className = "pager";
+    const mk = (cls, dir, target) => {
+      const b = document.createElement("button");
+      b.className = cls;
+      const d = document.createElement("span"); d.className = "dir"; d.textContent = dir;
+      const tt = document.createElement("span"); tt.className = "ttl";
+      tt.textContent = target ? target.num + ". " + target.title : "Home";
+      b.append(d, tt);
+      b.addEventListener("click", () => go(target ? target.num : 0));
+      return b;
+    };
+    pager.appendChild(n > 1 ? mk("prev", "← Previous", topics[n - 2]) : mk("prev", "← Back to", null));
+    if (n < topics.length) pager.appendChild(mk("next", "Next →", topics[n]));
+    const kbd = document.createElement("div");
+    kbd.className = "kbd-hint";
+    kbd.textContent = "Tip: use the ← and → arrow keys to move between topics.";
+
+    page.append(eyebrow, h, chips, hint, md, doneRow, pager, kbd);
+  }
+
+  // ---------- search highlight inside a topic ----------
+  function highlight(q) {
+    const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+    const md = page.querySelector(".md");
+    if (!md) return;
+    const walker = document.createTreeWalker(md, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) {
+      re.lastIndex = 0;
+      if (re.test(walker.currentNode.nodeValue)) nodes.push(walker.currentNode);
+    }
+    nodes.forEach(node => {
+      const frag = document.createDocumentFragment();
+      const text = node.nodeValue;
+      let last = 0;
+      re.lastIndex = 0;
+      let m;
+      while ((m = re.exec(text))) {
+        frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        const mk = document.createElement("mark");
+        mk.textContent = m[0];
+        frag.appendChild(mk);
+        last = m.index + m[0].length;
+      }
+      frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+    const first = md.querySelector("mark");
+    if (first) {
+      const qa = first.closest(".qa");
+      if (qa && !qa.classList.contains("open")) { const b = qa.querySelector(".reveal"); if (b) b.click(); }
+      setTimeout(() => first.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
+    }
+  }
+
+  // ---------- keyboard ----------
+  document.addEventListener("keydown", e => {
+    const tag = (e.target.tagName || "").toLowerCase();
+    if (tag === "input" || tag === "textarea" || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === "ArrowRight" && currentTopic < topics.length) go(currentTopic + 1);
+    if (e.key === "ArrowLeft" && currentTopic > 1) go(currentTopic - 1);
+    if (e.key === "/") { e.preventDefault(); search.focus(); }
+  });
+
+  // ---------- reading progress ----------
+  function updateReadProgress() {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    $("readProgress").style.width = (h > 0 ? Math.min(100, (window.scrollY / h) * 100) : 0) + "%";
+  }
+  window.addEventListener("scroll", updateReadProgress, { passive: true });
+
+  updateProgress();
+  route();
+})();
+</script>
+</body>
+</html>
